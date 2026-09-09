@@ -83,7 +83,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-slate-800">
               <Link
-                href="https://lemonsqueezy.com"
+                href="https://autosstudio.lemonsqueezy.com/checkout/buy/d8f2e201-3e35-4655-bfed-292247cac734?variant=2018215"
                 target="_blank"
                 className="w-full block text-center rounded-xl border border-slate-700 bg-slate-800/80 py-3 text-xs font-semibold text-white hover:bg-slate-700 transition-colors"
               >
@@ -123,7 +123,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-brand-mint/30">
               <Link
-                href="https://lemonsqueezy.com"
+                href="https://autosstudio.lemonsqueezy.com/checkout/buy/d8f2e201-3e35-4655-bfed-292247cac734?variant=2018238"
                 target="_blank"
                 className="w-full block text-center rounded-xl bg-gradient-to-r from-brand-mint to-brand-cyan py-3 text-xs font-bold text-slate-950 shadow-lg shadow-brand-mint/30 hover:brightness-110 transition-all"
               >
@@ -158,7 +158,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-slate-800">
               <Link
-                href="https://lemonsqueezy.com"
+                href="https://autosstudio.lemonsqueezy.com/checkout/buy/d8f2e201-3e35-4655-bfed-292247cac734?variant=2018250"
                 target="_blank"
                 className="w-full block text-center rounded-xl border border-slate-700 bg-slate-800/80 py-3 text-xs font-semibold text-white hover:bg-slate-700 transition-colors"
               >
