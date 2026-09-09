@@ -1,0 +1,16 @@
+{
+  "name": "Agyflow Autonomous Multi-Agent Workspace",
+  "short_name": "Agyflow",
+  "description": "Orchestrate specialized AI agents, streamline customer support, and generate GDPR compliance documents.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071224",
+  "theme_color": "#35e0b2",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64 128x128 256x256",
+      "type": "image/svg+xml"
+    }
+  ]
+}

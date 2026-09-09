@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# next.js build output
+.next/
+out/
+dist/
+
+# local secrets / notes (contains hosting credentials - never commit)
+agyflow-main.md
+agyflow-main.md.bak
+
+# env & logs
+.env*
+npm-debug.log*
+
+# os
+.DS_Store
+Thumbs.db

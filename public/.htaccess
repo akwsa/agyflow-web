@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Localized pages: /de and /fr -> static html files
+  RewriteRule ^de/?$ de.html [L]
+  RewriteRule ^fr/?$ fr.html [L]
+
+  # Pretty 404
+  ErrorDocument 404 /404.html
+</IfModule>
