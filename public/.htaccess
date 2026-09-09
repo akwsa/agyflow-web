@@ -1,10 +1,34 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
+# Agyflow Production Apache Configuration
+RewriteEngine On
 
-  # Localized pages: /de and /fr -> static html files
-  RewriteRule ^de/?$ de.html [L]
-  RewriteRule ^fr/?$ fr.html [L]
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Pretty 404
-  ErrorDocument 404 /404.html
+# Localized pages: /de and /fr -> static html files
+RewriteRule ^de/?$ de.html [L]
+RewriteRule ^fr/?$ fr.html [L]
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
+
+# Caching for Next.js static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 day"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+</IfModule>
+
+# Fallback for routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L]
