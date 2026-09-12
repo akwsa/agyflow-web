@@ -12,16 +12,12 @@ export default function JsonLd({ lang = "en" }: { lang?: Lang }) {
     "url": "https://agyflow.com",
     "logo": "https://agyflow.com/favicon.svg",
     "description": jl.orgDescription,
-    "sameAs": [
-      "https://twitter.com/agyflow",
-      "https://github.com/agyflow"
-    ]
   };
 
   const schemaSoftwareApp = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Agyflow Multi-Agent Suite",
+    "name": "PrivacyPage AI",
     "operatingSystem": "All",
     "applicationCategory": "BusinessApplication",
     "url": "https://agyflow.com",
@@ -52,12 +48,6 @@ export default function JsonLd({ lang = "en" }: { lang?: Lang }) {
         "availability": "https://schema.org/InStock"
       }
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "84",
-      "reviewCount": "84"
-    }
   };
 
   const schemaFaq = {

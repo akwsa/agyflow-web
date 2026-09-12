@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { getDict, type Lang } from "@/lib/i18n";
 
 export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
   const t = getDict(lang).pricing;
-  const [isAnnual, setIsAnnual] = useState(false);
 
   return (
     <section id="pricing" className="py-24 bg-[#071224] relative overflow-hidden">
@@ -27,31 +26,6 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
           <p className="mt-4 text-base text-slate-300">
             {t.subtitle}
           </p>
-
-          {/* Billing Toggle */}
-          <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur-md">
-            <button
-              type="button"
-              onClick={() => setIsAnnual(false)}
-              className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
-                !isAnnual ? "bg-brand-mint text-slate-950 shadow" : "text-slate-400 hover:text-white"
-              }`}
-            >
-              {t.monthly}
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsAnnual(true)}
-              className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                isAnnual ? "bg-brand-mint text-slate-950 shadow" : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <span>{t.annual}</span>
-              <span className="rounded-full bg-brand-cyan/20 border border-brand-cyan/40 px-2 py-0.5 text-[10px] text-brand-cyan">
-                {t.save}
-              </span>
-            </button>
-          </div>
         </div>
 
         {/* Pricing Cards */}
@@ -63,7 +37,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               <div className="text-sm font-semibold text-slate-300">{t.starter.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
                 <span className="text-4xl font-extrabold text-white">
-                  ${isAnnual ? "12" : "15"}
+                  $15
                 </span>
                 <span className="text-xs text-slate-400">{t.perMonth}</span>
               </div>
@@ -103,7 +77,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               <div className="text-sm font-semibold text-brand-mint">{t.pro.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
                 <span className="text-4xl font-extrabold text-white">
-                  ${isAnnual ? "24" : "29"}
+                  $29
                 </span>
                 <span className="text-xs text-slate-400">{t.perMonth}</span>
               </div>
@@ -138,7 +112,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               <div className="text-sm font-semibold text-indigo-400">{t.agency.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
                 <span className="text-4xl font-extrabold text-white">
-                  ${isAnnual ? "39" : "49"}
+                  $49
                 </span>
                 <span className="text-xs text-slate-400">{t.perMonth}</span>
               </div>

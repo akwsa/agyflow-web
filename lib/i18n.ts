@@ -336,7 +336,7 @@ const en = {
     orgDescription:
       "Autonomous multi-agent workspace and business operations automation suite.",
     appDescription:
-      "Autonomous AI agent workflows, GDPR compliance generator, and AI customer support assistant for modern digital teams.",
+      "PrivacyPage AI is a GDPR and privacy policy generator that creates editable compliance-policy drafts for websites.",
     offers: {
       starter: "Starter Plan",
       pro: "Pro Plan",
@@ -681,7 +681,7 @@ const de: Dict = {
     orgDescription:
       "Autonomer Multi-Agent-Workspace und Suite zur Automatisierung von Geschäftsabläufen.",
     appDescription:
-      "Autonome KI-Agenten-Workflows, DSGVO-Compliance-Generator und KI-Kundensupport-Assistent für moderne digitale Teams.",
+      "PrivacyPage AI ist ein DSGVO- und Datenschutzrichtlinien-Generator für bearbeitbare Compliance-Entwürfe für Websites.",
     offers: {
       starter: "Starter-Tarif",
       pro: "Pro-Tarif",
@@ -1024,7 +1024,7 @@ const fr: Dict = {
     orgDescription:
       "Espace de travail multi-agents autonome et suite d'automatisation des opérations métier.",
     appDescription:
-      "Workflows d'agents IA autonomes, générateur de conformité RGPD et assistant support client IA pour les équipes digitales modernes.",
+      "PrivacyPage AI est un générateur RGPD et de politiques de confidentialité créant des brouillons de conformité modifiables pour les sites web.",
     offers: {
       starter: "Offre Starter",
       pro: "Offre Pro",
