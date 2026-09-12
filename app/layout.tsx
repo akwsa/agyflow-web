@@ -36,7 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className="min-h-screen bg-[#071224] text-slate-100 antialiased selection:bg-brand-mint selection:text-slate-900">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;510;590&display=swap"
+        />
+      </head>
+      <body className="min-h-screen bg-neutral-void text-neutral-mist antialiased selection:bg-brand-mint selection:text-neutral-void font-sans">
         {children}
       </body>
     </html>

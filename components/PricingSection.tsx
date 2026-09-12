@@ -9,21 +9,21 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
   const t = getDict(lang).pricing;
 
   return (
-    <section id="pricing" className="py-24 bg-[#071224] relative overflow-hidden">
+    <section id="pricing" className="py-24 bg-neutral-void relative overflow-hidden">
       {/* Background glow */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-brand-mint/10 blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-brand-mint/5 blur-[150px]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <span className="text-xs font-semibold tracking-widest text-brand-mint uppercase">
+          <span className="text-xs font-medium tracking-widest text-brand-mint uppercase">
             {t.kicker}
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-5xl">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-paper sm:text-5xl" style={{ letterSpacing: '-0.022em' }}>
             {t.title}
           </h2>
-          <p className="mt-4 text-base text-slate-300">
+          <p className="mt-4 text-base text-neutral-mist">
             {t.subtitle}
           </p>
         </div>
@@ -32,22 +32,22 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           
           {/* Tier 1: Starter */}
-          <div className="rounded-2xl border border-slate-800 bg-[#0a1628]/90 p-8 flex flex-col justify-between glass-panel-hover">
+          <div className="rounded-card border border-neutral-graphite bg-neutral-carbon/90 p-8 flex flex-col justify-between glass-panel-hover">
             <div>
-              <div className="text-sm font-semibold text-slate-300">{t.starter.name}</div>
+              <div className="text-sm font-medium text-neutral-mist">{t.starter.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
-                <span className="text-4xl font-extrabold text-white">
+                <span className="text-4xl font-semibold text-neutral-paper">
                   $15
                 </span>
-                <span className="text-xs text-slate-400">{t.perMonth}</span>
+                <span className="text-xs text-neutral-fog">{t.perMonth}</span>
               </div>
-              <p className="mt-3 text-xs text-slate-300">
+              <p className="mt-3 text-xs text-neutral-mist">
                 {t.starter.desc}
               </p>
 
               <ul className="mt-8 space-y-3">
                 {t.starter.features.map((feat, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs text-slate-300">
+                  <li key={idx} className="flex items-center gap-2.5 text-xs text-neutral-mist">
                     <Check className="h-4 w-4 text-brand-mint shrink-0" />
                     <span>{feat}</span>
                   </li>
@@ -55,11 +55,11 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               </ul>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-800">
+            <div className="mt-8 pt-6 border-t border-neutral-graphite">
               <Link
-                href="https://autosstudio.lemonsqueezy.com/checkout/buy/d8f2e201-3e35-4655-bfed-292247cac734?variant=2018215"
+                href="https://autosstudio.lemonsqueezy.com/checkout/buy/2018215"
                 target="_blank"
-                className="w-full block text-center rounded-xl border border-slate-700 bg-slate-800/80 py-3 text-xs font-semibold text-white hover:bg-slate-700 transition-colors"
+                className="w-full block text-center rounded-button border border-neutral-graphite bg-neutral-carbon/80 py-3 text-xs font-medium text-neutral-paper hover:bg-neutral-obsidian transition-colors"
               >
                 {t.starter.cta}
               </Link>
@@ -67,27 +67,27 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
           </div>
 
           {/* Tier 2: Pro (Featured) */}
-          <div className="relative rounded-2xl border-2 border-brand-mint bg-[#0d1f38] p-8 flex flex-col justify-between shadow-2xl shadow-brand-mint/15 scale-105 z-10">
+          <div className="relative rounded-card border-2 border-brand-mint bg-neutral-obsidian p-8 flex flex-col justify-between shadow-2xl shadow-brand-mint/15 scale-105 z-10">
             {/* Top Pill */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-mint to-brand-cyan px-3 py-0.5 text-[10px] font-bold text-slate-950 uppercase tracking-wider">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-pill bg-brand-mint px-3 py-0.5 text-[10px] font-medium text-neutral-void uppercase tracking-wider">
               {t.popular}
             </div>
 
             <div>
-              <div className="text-sm font-semibold text-brand-mint">{t.pro.name}</div>
+              <div className="text-sm font-medium text-brand-mint">{t.pro.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
-                <span className="text-4xl font-extrabold text-white">
+                <span className="text-4xl font-semibold text-neutral-paper">
                   $29
                 </span>
-                <span className="text-xs text-slate-400">{t.perMonth}</span>
+                <span className="text-xs text-neutral-fog">{t.perMonth}</span>
               </div>
-              <p className="mt-3 text-xs text-slate-300">
+              <p className="mt-3 text-xs text-neutral-mist">
                 {t.pro.desc}
               </p>
 
               <ul className="mt-8 space-y-3">
                 {t.pro.features.map((feat, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs text-slate-200">
+                  <li key={idx} className="flex items-center gap-2.5 text-xs text-neutral-mist">
                     <Check className="h-4 w-4 text-brand-mint shrink-0" />
                     <span>{feat}</span>
                   </li>
@@ -97,9 +97,9 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-brand-mint/30">
               <Link
-                href="https://autosstudio.lemonsqueezy.com/checkout/buy/d8f2e201-3e35-4655-bfed-292247cac734?variant=2018238"
+                href="https://autosstudio.lemonsqueezy.com/checkout/buy/2018238"
                 target="_blank"
-                className="w-full block text-center rounded-xl bg-gradient-to-r from-brand-mint to-brand-cyan py-3 text-xs font-bold text-slate-950 shadow-lg shadow-brand-mint/30 hover:brightness-110 transition-all"
+                className="w-full block text-center rounded-button bg-brand-mint py-3 text-xs font-medium text-neutral-void hover:bg-brand-mint/90 transition-all active:scale-96 scale-on-press"
               >
                 {t.pro.cta}
               </Link>
@@ -107,22 +107,22 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
           </div>
 
           {/* Tier 3: Agency */}
-          <div className="rounded-2xl border border-slate-800 bg-[#0a1628]/90 p-8 flex flex-col justify-between glass-panel-hover">
+          <div className="rounded-card border border-neutral-graphite bg-neutral-carbon/90 p-8 flex flex-col justify-between glass-panel-hover">
             <div>
-              <div className="text-sm font-semibold text-indigo-400">{t.agency.name}</div>
+              <div className="text-sm font-medium text-indigo-400">{t.agency.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
-                <span className="text-4xl font-extrabold text-white">
+                <span className="text-4xl font-semibold text-neutral-paper">
                   $49
                 </span>
-                <span className="text-xs text-slate-400">{t.perMonth}</span>
+                <span className="text-xs text-neutral-fog">{t.perMonth}</span>
               </div>
-              <p className="mt-3 text-xs text-slate-300">
+              <p className="mt-3 text-xs text-neutral-mist">
                 {t.agency.desc}
               </p>
 
               <ul className="mt-8 space-y-3">
                 {t.agency.features.map((feat, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs text-slate-300">
+                  <li key={idx} className="flex items-center gap-2.5 text-xs text-neutral-mist">
                     <Check className="h-4 w-4 text-brand-mint shrink-0" />
                     <span>{feat}</span>
                   </li>
@@ -130,11 +130,11 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               </ul>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-800">
+            <div className="mt-8 pt-6 border-t border-neutral-graphite">
               <Link
-                href="https://autosstudio.lemonsqueezy.com/checkout/buy/d8f2e201-3e35-4655-bfed-292247cac734?variant=2018250"
+                href="https://autosstudio.lemonsqueezy.com/checkout/buy/2018250"
                 target="_blank"
-                className="w-full block text-center rounded-xl border border-slate-700 bg-slate-800/80 py-3 text-xs font-semibold text-white hover:bg-slate-700 transition-colors"
+                className="w-full block text-center rounded-button border border-neutral-graphite bg-neutral-carbon/80 py-3 text-xs font-medium text-neutral-paper hover:bg-neutral-obsidian transition-colors"
               >
                 {t.agency.cta}
               </Link>
