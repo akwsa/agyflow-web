@@ -27,16 +27,21 @@ In your Rumahweb Client Area (DNS Management for `agyflow.com`):
 | **CNAME** | `www` | `cname.vercel-dns.com.` | 3600 |
 
 ## 💻 Development
+
 ```bash
-# Run local development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm run start
+npm run dev          # local development server
+npm run build        # production static export into out/
+npm run preview      # serve out/ with production routing rules (127.0.0.1:4173)
+npm run check-links  # verify internal links and assets resolve
+npm run clean        # remove .next/, out/, dist/
 ```
+
+`npm run build` runs `scripts/build.mjs`, not `next build` directly — see
+`docs/BUILD.md` for why, plus the static routing rules and deploy steps.
+
+- `docs/BUILD.md` — build system, routing, deploy
+- `docs/I18N.md` — English / German / French routing
+- `CHANGELOG.md` — what changed, newest first
 
 ## 🤖 Copilot → Hermes Bridge
 
