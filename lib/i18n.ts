@@ -223,6 +223,24 @@ const en = {
       },
     ],
   },
+  shop: {
+    kicker: "Digital Product Catalog",
+    title: "Toolkits You Can Download Today",
+    subtitle:
+      "Instant-download compliance, operations, and AI governance products for web freelancers and agencies — in English, German, and French. One-time purchase, yours forever.",
+    viewAll: "Browse all products",
+    view: "View product",
+    buyNow: "Buy now",
+    from: "from",
+    oneTime: "one-time",
+    save: "Save",
+    languagesLabel: "Languages",
+    formatsLabel: "Formats",
+    bundleTitle: "Need everything?",
+    bundleText:
+      "Get all five toolkits in the Agency Compliance Toolkit bundle and save 54% versus buying separately.",
+    bundleCta: "View the bundle",
+  },
   pricing: {
     kicker: "Transparent Pricing",
     title: "Predictable Plans for High-Output Teams",
@@ -568,6 +586,24 @@ const de: Dict = {
       },
     ],
   },
+  shop: {
+    kicker: "Digitaler Produktkatalog",
+    title: "Toolkits, die Sie heute herunterladen können",
+    subtitle:
+      "Sofort verfügbare Compliance-, Operations- und KI-Governance-Produkte für Web-Freelancer und Agenturen — auf Englisch, Deutsch und Französisch. Einmaliger Kauf, dauerhaft nutzbar.",
+    viewAll: "Alle Produkte ansehen",
+    view: "Produkt ansehen",
+    buyNow: "Jetzt kaufen",
+    from: "ab",
+    oneTime: "einmalig",
+    save: "Sparen",
+    languagesLabel: "Sprachen",
+    formatsLabel: "Formate",
+    bundleTitle: "Brauchen Sie alles?",
+    bundleText:
+      "Holen Sie sich alle fünf Toolkits im Agency Compliance Toolkit Bundle und sparen Sie 54 % gegenüber dem Einzelkauf.",
+    bundleCta: "Bundle ansehen",
+  },
   pricing: {
     kicker: "Transparente Preise",
     title: "Berechenbare Tarife für leistungsstarke Teams",
@@ -910,6 +946,24 @@ const fr: Dict = {
         ctaText: "Lancer le suivi de factures",
       },
     ],
+  },
+  shop: {
+    kicker: "Catalogue de produits numériques",
+    title: "Des toolkits à télécharger dès aujourd'hui",
+    subtitle:
+      "Produits de conformité, d'opérations et de gouvernance IA en téléchargement immédiat pour freelances et agences web — en anglais, allemand et français. Achat unique, à vous pour toujours.",
+    viewAll: "Voir tous les produits",
+    view: "Voir le produit",
+    buyNow: "Acheter",
+    from: "à partir de",
+    oneTime: "paiement unique",
+    save: "Économisez",
+    languagesLabel: "Langues",
+    formatsLabel: "Formats",
+    bundleTitle: "Besoin de tout ?",
+    bundleText:
+      "Obtenez les cinq toolkits dans le bundle Agency Compliance Toolkit et économisez 54 % par rapport à l'achat séparé.",
+    bundleCta: "Voir le bundle",
   },
   pricing: {
     kicker: "Tarification transparente",

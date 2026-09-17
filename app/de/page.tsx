@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 
 export default function GermanHomePage() {
   return (
-    <main className="min-h-screen bg-[#071224] text-slate-100 flex flex-col">
+    <main className="min-h-[100dvh] bg-[#071224] text-slate-100 flex flex-col">
       <Navbar lang="de" />
       <Hero lang="de" />
       <InteractiveAgentFlow lang="de" />

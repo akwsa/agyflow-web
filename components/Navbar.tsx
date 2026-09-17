@@ -63,7 +63,7 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
             {t.engine}
           </Link>
           <Link
-            href="#products"
+            href="/products"
             className="text-sm font-medium text-neutral-mist hover:text-brand-mint transition-colors"
           >
             {t.products}
@@ -130,7 +130,7 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
               {t.engine}
             </Link>
             <Link
-              href="#products"
+              href="/products"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 text-base font-medium text-neutral-mist hover:text-brand-mint"
             >

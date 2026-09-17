@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Bot } from "lucide-react";
 import { getDict, type Lang } from "@/lib/i18n";
+import { getAllProducts } from "@/lib/products";
 
 export default function Footer({ lang = "en" }: { lang?: Lang }) {
   const t = getDict(lang).footer;
@@ -33,30 +34,30 @@ export default function Footer({ lang = "en" }: { lang?: Lang }) {
             </div>
           </div>
 
-          {/* Products Column */}
+          {/* Products Column — data-driven from data/products.json */}
           <div>
             <h4 className="font-semibold text-white tracking-wider uppercase text-[11px] mb-3">
               {t.colProducts}
             </h4>
             <ul className="space-y-2">
+              {getAllProducts()
+                .filter((p) => p.status === "live")
+                .map((product) => (
+                  <li key={product.slug}>
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="hover:text-brand-mint transition-colors"
+                    >
+                      {product.shortName}
+                    </Link>
+                  </li>
+                ))}
               <li>
-                <Link href="#products" className="hover:text-brand-mint transition-colors">
-                  {t.productLinks[0]}
-                </Link>
-              </li>
-              <li>
-                <Link href="#products" className="hover:text-brand-mint transition-colors">
-                  {t.productLinks[1]}
-                </Link>
-              </li>
-              <li>
-                <Link href="#products" className="hover:text-brand-mint transition-colors">
-                  {t.productLinks[2]}
-                </Link>
-              </li>
-              <li>
-                <Link href="#engine" className="hover:text-brand-mint transition-colors">
-                  {t.productLinks[3]}
+                <Link
+                  href="/products"
+                  className="text-brand-mint hover:text-white transition-colors"
+                >
+                  {getDict(lang).shop.viewAll} →
                 </Link>
               </li>
             </ul>

@@ -42,8 +42,8 @@ const config: Config = {
         "radial-accent": "radial-gradient(circle at 80% 20%, rgba(2, 184, 204, 0.12) 0%, transparent 60%)",
       },
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['"Berkeley Mono"', 'monospace'],
+        sans: ['"Geist"', '"Segoe UI Variable"', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        mono: ['"Berkeley Mono"', '"Cascadia Code"', 'monospace'],
       },
       fontSize: {
         'display': ['72px', { lineHeight: '1', letterSpacing: '-0.022em', fontWeight: '510' }],

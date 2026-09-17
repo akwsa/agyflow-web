@@ -37,3 +37,34 @@ npm run build
 # Start production server
 npm run start
 ```
+
+## 🤖 Copilot → Hermes Bridge
+
+This project includes a typed Hermes adapter for integration with a Copilot-driven workflow and Hermes Agent Router.
+
+### Environment
+Create a `.env.local` from `.env.example` and set the Hermes endpoint for your runtime:
+
+```bash
+cp .env.example .env.local
+```
+
+Example:
+```bash
+HERMES_BASE_URL=https://hermes.example.com
+HERMES_API_KEY=your-secret-key
+HERMES_ROUTER_PATH=/api/v1/agent-router/route
+HERMES_STATUS_PATH=/api/v1/agent-router/jobs
+HERMES_TIMEOUT_MS=15000
+```
+
+### Adapter usage
+
+The adapter lives in `lib/server/hermes.ts` and exposes:
+- `sendToHermes(request)`
+- `getHermesStatus(requestId)`
+- validation helpers and typed response contracts
+
+This repo is statically exported (`output: "export"`), so the integration is intentionally kept in a reusable server-side module for a real backend hook or Route Handler when one is added later.
+
+See `docs/HERMES_INTEGRATION.md` for the full contract, security model, retry policy, and staging checklist.

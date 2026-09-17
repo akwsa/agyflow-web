@@ -1,0 +1,232 @@
+[
+  {
+    "slug": "agency-compliance-toolkit",
+    "name": "Agency Compliance Toolkit",
+    "shortName": "Complete Bundle",
+    "tagline": "Every Agyflow Tier 1 product in one download — the complete compliance + client operations toolkit for web freelancers and agencies.",
+    "category": "bundle",
+    "price": 29,
+    "compareAt": 63,
+    "commercialPrice": 59,
+    "currency": "USD",
+    "badge": "Best Value — Save 54%",
+    "featured": true,
+    "status": "live",
+    "format": ["Markdown", "Excel", "ZIP"],
+    "languages": ["EN", "DE", "FR"],
+    "audience": "Web freelancers, agencies, consultants serving EU clients",
+    "stats": [
+      { "label": "Products included", "value": "5" },
+      { "label": "Languages", "value": "EN / DE / FR" },
+      { "label": "Value if bought separately", "value": "$63" }
+    ],
+    "description": [
+      "Every Agyflow Tier 1 product in one download — the complete compliance and client operations toolkit for web freelancers and agencies serving EU clients.",
+      "Buy the bundle and save 54% versus purchasing each product separately ($63 value). The Commercial License variant ($59) adds agency and team rights: use in unlimited client deliverables and share with your direct team per the included LICENSE.txt."
+    ],
+    "features": [
+      "GDPR/DSGVO Website Compliance Checklist — EN + DE, 308 points ($12 value)",
+      "Cookie Audit & Vendor Inventory spreadsheet with live dashboard ($9 value)",
+      "Invoice Reminder Email Pack — 30 templates, EN/DE/FR ($15 value)",
+      "Client Onboarding Kit — questionnaire + kickoff checklist + 8 emails ($15 value)",
+      "AI Usage Policy Pack — policy + approval checklist + disclosures ($12 value)",
+      "LICENSE.txt covering Individual and Commercial tiers"
+    ],
+    "cover": "/products/agency-compliance-toolkit-cover.png",
+    "thumb": "/products/agency-compliance-toolkit-thumb.png",
+    "checkoutUrl": "https://wkagungster.gumroad.com/l/agency-compliance-toolkit",
+    "includesProducts": ["gdpr-checklist", "cookie-audit", "invoice-reminders", "client-onboarding", "ai-policy-pack"]
+  },
+  {
+    "slug": "gdpr-checklist",
+    "name": "GDPR/DSGVO Website Compliance Checklist",
+    "shortName": "GDPR Checklist",
+    "tagline": "308-point pre-launch privacy audit for marketing websites and small shops, in English AND German.",
+    "category": "compliance",
+    "price": 12,
+    "currency": "USD",
+    "badge": "Flagship",
+    "featured": true,
+    "status": "live",
+    "format": ["Markdown"],
+    "languages": ["EN", "DE"],
+    "audience": "Web designers, developers, agencies, site owners",
+    "stats": [
+      { "label": "Checklist points", "value": "308" },
+      { "label": "Sections", "value": "14" },
+      { "label": "Languages", "value": "EN + DE" }
+    ],
+    "description": [
+      "A 308-point pre-launch privacy audit for marketing websites, landing pages, and small shops. Built for web freelancers and agencies serving EU clients.",
+      "The German version uses native DSGVO terminology — Verzeichnis von Verarbeitungstätigkeiten, AVV, Betroffenrechte — not machine-translated boilerplate. Blocker flags show exactly what stops a launch."
+    ],
+    "features": [
+      "308 checklist items in English AND German with native DSGVO terminology",
+      "14 sections: data mapping, lawful bases (Art. 6), privacy policy duties (Art. 13/14), cookie consent, fonts/CDN/embeds, forms + double opt-in, vendor DPAs (Art. 28), Art. 30 register lite, data subject rights, TOMs, international transfers, 72-hour breach note",
+      "(blocker) flags so you know what stops a launch",
+      "Vendor list template appendix",
+      "Markdown format: works in Word, Google Docs, Notion, Obsidian"
+    ],
+    "cover": "/products/gdpr-checklist-cover.png",
+    "thumb": "/products/gdpr-checklist-thumb.png",
+    "checkoutUrl": "https://wkagungster.gumroad.com/l/gdpr-checklist"
+  },
+  {
+    "slug": "cookie-audit",
+    "name": "Cookie Audit & Vendor Inventory",
+    "shortName": "Cookie Audit Tool",
+    "tagline": "The spreadsheet that turns cookie chaos into a clean compliance record.",
+    "category": "compliance",
+    "price": 9,
+    "currency": "USD",
+    "status": "live",
+    "format": ["Excel", "Google Sheets"],
+    "languages": ["EN"],
+    "audience": "Agencies auditing client sites, site owners documenting vendors",
+    "stats": [
+      { "label": "Example cookie rows", "value": "12" },
+      { "label": "Example vendor rows", "value": "6" },
+      { "label": "Macros required", "value": "0" }
+    ],
+    "description": [
+      "Audit every cookie, tag, and third-party tool on a site and keep a clean vendor register for privacy documentation.",
+      "A live dashboard auto-counts consent-required cookies, missing DPAs, and non-EU vendors as you fill it in."
+    ],
+    "features": [
+      "Cookie Audit sheet: name, provider, category, purpose, duration, consent-required, non-EU transfer — with dropdowns for fast, consistent entries",
+      "Vendor Register sheet: role (controller/processor), data location, DPA status, transfer safeguards, review dates",
+      "Live Dashboard: auto-counts consent-required cookies, missing DPAs, and non-EU vendors",
+      "12 example cookie rows + 6 example vendor rows showing real-world patterns (retargeting pixel, chat widget, font CDN, A/B testing)",
+      "Works in Excel, LibreOffice, Google Sheets. No macros, nothing to install."
+    ],
+    "cover": "/products/cookie-audit-cover.png",
+    "thumb": "/products/cookie-audit-thumb.png",
+    "checkoutUrl": "https://wkagungster.gumroad.com/l/cookie-audit"
+  },
+  {
+    "slug": "invoice-reminders",
+    "name": "Invoice Reminder Email Pack",
+    "shortName": "Invoice Reminders",
+    "tagline": "30 professional payment reminder emails — 10 per language in English, German, and French.",
+    "category": "operations",
+    "price": 15,
+    "currency": "USD",
+    "status": "live",
+    "format": ["Markdown"],
+    "languages": ["EN", "DE", "FR"],
+    "audience": "Freelancers, agencies, consultants with EU and international clients",
+    "stats": [
+      { "label": "Email templates", "value": "30" },
+      { "label": "Languages", "value": "EN / DE / FR" },
+      { "label": "Situations covered", "value": "10" }
+    ],
+    "description": [
+      "Never chase an unpaid invoice by improvising again. 30 professional payment reminder emails — 10 per language in English, German, and French.",
+      "Professional friendly-firm escalation — no debt-collector aggression. Merge-field ready with client_name, invoice_number, amount, due_date, days_overdue, payment_link."
+    ],
+    "features": [
+      "The 7/14/30-day escalation schedule: gentle nudge, firm follow-up, final reminder",
+      "7 situational templates: lost invoice, invoice copy attached, payment plan offer, partial payment thanks, phone follow-up, re-engagement after silence, post-payment goodwill + referral ask",
+      "Merge-field ready for your email tool of choice",
+      "Tone guide + what-to-check-in-your-contract section",
+      "Reminder templates only — not legal or debt-collection advice"
+    ],
+    "cover": "/products/invoice-reminders-cover.png",
+    "thumb": "/products/invoice-reminders-thumb.png",
+    "checkoutUrl": "https://wkagungster.gumroad.com/l/invoice-reminders"
+  },
+  {
+    "slug": "client-onboarding",
+    "name": "Client Onboarding Kit",
+    "shortName": "Onboarding Kit",
+    "tagline": "Standardize every client project from first call to handover. The kit that makes a one-person business run like an agency.",
+    "category": "operations",
+    "price": 15,
+    "currency": "USD",
+    "status": "live",
+    "format": ["Markdown"],
+    "languages": ["EN"],
+    "audience": "Web designers, developers, SEO/marketing freelancers, small agencies",
+    "stats": [
+      { "label": "Intake questions", "value": "29" },
+      { "label": "Kickoff checklist items", "value": "55" },
+      { "label": "Email templates", "value": "8" }
+    ],
+    "description": [
+      "Standardize every client project from first call to handover. The kit that makes a one-person business look and run like an agency.",
+      "Tool-agnostic: works with any PM tool, any file sharing, any calendar."
+    ],
+    "features": [
+      "29-question client intake questionnaire: business context, success metrics, audience, assets & access, technical environment, constraints, communication preferences",
+      "Project kickoff checklist: before the call / call agenda / within 24h after / first week (55 items)",
+      "8 client email templates with subject lines: welcome, scheduling, post-kickoff recap, asset requests, status updates, delay + new timeline, feedback request, delivery/handover",
+      "Tool-agnostic: any PM tool, any file sharing, any calendar"
+    ],
+    "cover": "/products/client-onboarding-cover.png",
+    "thumb": "/products/client-onboarding-thumb.png",
+    "checkoutUrl": "https://wkagungster.gumroad.com/l/client-onboarding"
+  },
+  {
+    "slug": "ai-policy-pack",
+    "name": "AI Usage Policy Pack",
+    "shortName": "AI Policy Pack",
+    "tagline": "Rules for your team's AI use without a legal department: policy, approval checklist, and client-facing disclosures.",
+    "category": "ai-governance",
+    "price": 12,
+    "currency": "USD",
+    "status": "live",
+    "format": ["Markdown"],
+    "languages": ["EN"],
+    "audience": "Small businesses, agencies, marketing teams, SaaS startups using AI internally",
+    "stats": [
+      { "label": "Approval checklist items", "value": "20" },
+      { "label": "Disclosure templates", "value": "3" },
+      { "label": "Policy sections", "value": "Full" }
+    ],
+    "description": [
+      "Your team already uses AI tools. This pack gives you the rules, the guardrails, and the client-facing language — without hiring a legal department.",
+      "A practical starting point — have counsel review before formal adoption."
+    ],
+    "features": [
+      "Internal AI usage policy: allowed/conditional/prohibited uses, what may NEVER go into AI tools (customer PII, credentials, client confidential data), human review requirements, incident reporting",
+      "20-item AI tool approval checklist: data flow, retention, training on inputs, hosting location, DPA availability, access control, exit plan",
+      "3 client-facing AI disclosure templates: full transparency, short deliverable mention, FAQ-style — with when-to-use guidance"
+    ],
+    "cover": "/products/ai-policy-pack-cover.png",
+    "thumb": "/products/ai-policy-pack-thumb.png",
+    "checkoutUrl": "https://wkagungster.gumroad.com/l/ai-policy-pack"
+  },
+  {
+    "slug": "montessori-busy-book",
+    "name": "Montessori Toddler Busy Book",
+    "shortName": "Busy Book Printable",
+    "tagline": "40+ pages of screen-free Montessori fun for toddlers ages 2–5. Instant-download PDF in A4 and US Letter.",
+    "category": "education",
+    "price": 9.99,
+    "currency": "USD",
+    "status": "early-access",
+    "format": ["PDF (A4)", "PDF (US Letter)"],
+    "languages": ["EN"],
+    "audience": "Parents, homeschoolers, early childhood educators (EU/UK & US/CA)",
+    "stats": [
+      { "label": "Activity pages", "value": "40+" },
+      { "label": "Page formats", "value": "A4 + US Letter" },
+      { "label": "Age range", "value": "2–5 years" }
+    ],
+    "description": [
+      "A meaningful, educational, and aesthetic activity binder for toddlers and preschoolers. Designed with soft, soothing earthy tones — no harsh neon colors — this printable pack helps develop fine motor skills, letter and number recognition, pre-writing tracing, and emotional awareness.",
+      "High-resolution, instant-download PDF files in two sizes: A4 (standard for Europe, UK, and global) and US Letter (for US and Canada)."
+    ],
+    "features": [
+      "40+ early-learning activity pages: alphabet and number matching, tracing, shapes, colors, and emotional awareness",
+      "Muted earthy / boho / pastel palette — Montessori compliant, zero harsh neon",
+      "Dual PDF format: A4 (210 × 297 mm) and US Letter (8.5 × 11 in)",
+      "Screen-free quiet-time activity for home, travel, and classroom",
+      "Print at home or at a print shop — as many times as you need"
+    ],
+    "cover": null,
+    "thumb": null,
+    "coverTheme": "earthy",
+    "checkoutUrl": null
+  }
+]

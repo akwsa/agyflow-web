@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { getAllProducts } from "@/lib/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://agyflow.com";
@@ -9,6 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     de: `${baseUrl}/de`,
     fr: `${baseUrl}/fr`,
   };
+
+  const productPages: MetadataRoute.Sitemap = getAllProducts().map((product) => ({
+    url: `${baseUrl}/products/${product.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: product.featured ? 0.9 : 0.8,
+  }));
 
   return [
     {
@@ -32,5 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       alternates: { languages },
     },
+    {
+      url: `${baseUrl}/products`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    ...productPages,
   ];
 }
