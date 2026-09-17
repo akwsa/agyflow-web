@@ -11,20 +11,30 @@ Agyflow provides high-reliability, deterministic business operations by orchestr
 - **AI Customer Support Reply Assistant**: Smart multi-lingual reply assistant with human-in-the-loop safeguards.
 - **Invoice Follow-Up & Reminder SaaS**: Automated payment recovery and polite follow-up schedules.
 
+### 🛒 Digital Product Catalog
+`/products` lists 7 digital products with individual pages at
+`/products/<slug>`. `data/products.json` is the single source of truth, and
+`lib/products.ts` exposes it to the catalog and the SSG product pages.
+Checkout is handled by Gumroad.
+
 ## 🛠️ Tech Stack
-- **Framework**: Next.js 14 (App Router, Server Components)
+- **Framework**: Next.js 14 (App Router, Server Components), static export to `out/`
 - **Styling**: Tailwind CSS, Dark Tech Aesthetic (Linear / Vercel design system)
 - **Icons**: Lucide React
-- **Payments**: Lemon Squeezy Merchant of Record integration
-- **Domain**: `agyflow.com` (Registered at Rumahweb, DNS connected to Vercel)
+- **Payments**: Lemon Squeezy (subscription plans) and Gumroad (digital products)
+- **Domain**: `agyflow.com`, registered at Rumahweb
 
-## 🌐 DNS Setup (Rumahweb ➡️ Vercel)
-In your Rumahweb Client Area (DNS Management for `agyflow.com`):
+## 🌐 Hosting
 
-| Type | Host | Target / RDATA | TTL |
-|---|---|---|---|
-| **A Record** | `@` | `76.76.21.21` | 3600 |
-| **CNAME** | `www` | `cname.vercel-dns.com.` | 3600 |
+`agyflow.com` is served from **Rumahweb cPanel** (Apache/LiteSpeed). The domain
+resolves to `203.175.9.146` — it is **not** hosted on Vercel.
+
+Deployment is a manual upload of `out/` into `public_html/`. This repo has no
+CI/CD configuration, so pushing to git does not deploy.
+
+`public/.htaccess` is part of the deployment: the site is a static export with
+`trailingSlash: false`, so clean URLs like `/de` and `/products/<slug>` only
+resolve because of its rewrite rules. See `docs/BUILD.md`.
 
 ## 💻 Development
 
