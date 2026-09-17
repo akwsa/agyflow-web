@@ -5,6 +5,7 @@ node_modules/
 .next/
 out/
 dist/
+*.tsbuildinfo
 
 # local secrets / notes (contains hosting credentials - never commit)
 agyflow-main.md

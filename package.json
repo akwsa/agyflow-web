@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/fix-html-lang.mjs",
+    "clean": "node scripts/clean.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "check-links": "node scripts/check-links.mjs",
     "start": "next start",
     "lint": "next lint"
   },

@@ -1,13 +1,37 @@
 # Agyflow Production Apache Configuration
+#
+# This file is served as-is by the static export. It exists for hosts that
+# serve `out/` directly (Apache/shared hosting). Vercel and Netlify resolve
+# clean URLs on their own and ignore this file.
+#
+# The export is generated with `trailingSlash: false`, so pages exist on disk
+# as `<route>.html` while every internal link and the sitemap point at the
+# extensionless route (`/de`, `/products/gdpr-checklist`). The rules below
+# bridge the two.
+
 RewriteEngine On
+
+# Do not let Apache content-negotiate around the explicit .html rules.
+Options -MultiViews
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Localized pages: /de and /fr -> static html files
-RewriteRule ^de/?$ de.html [L]
-RewriteRule ^fr/?$ fr.html [L]
+# Canonicalise trailing slashes: /products/ -> /products
+# Must run before the clean-URL rule, otherwise the .html probe below looks
+# for `<dir>/.html` and never matches.
+RewriteCond %{REQUEST_URI} !^/$
+RewriteRule ^(.+?)/+$ /$1 [R=301,L]
+
+# Clean URLs: resolve an extensionless request to its .html file.
+#
+# Note that `out/` contains BOTH products.html and a products/ directory, so
+# a plain DirectoryIndex lookup finds the directory and misses the page. This
+# explicit probe checks for the .html file first.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
 
 # Security Headers
 <IfModule mod_headers.c>
@@ -28,7 +52,10 @@ RewriteRule ^fr/?$ fr.html [L]
     ExpiresByType image/png "access plus 1 month"
 </IfModule>
 
-# Fallback for routing
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.html [L]
+# Unknown paths must 404.
+#
+# The previous configuration rewrote every unmatched request to /index.html.
+# That made each product URL render the homepage and turned genuinely missing
+# pages into soft 404s (HTTP 200 with unrelated content), which search
+# engines penalise.
+ErrorDocument 404 /404.html
