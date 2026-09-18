@@ -6,6 +6,57 @@ Commit hashes refer to the `main` branch. Dates are WIB (UTC+7).
 
 ---
 
+## 2026-09-18
+
+First production deploy of the 2026-09-17 work, plus the deploy procedure
+written down.
+
+### Deployed
+
+- 64 files uploaded to `public_html/` on agyflow.com (Rumahweb cPanel) over
+  FTP — the entire static export, including the repaired `.htaccess`. See
+  `docs/DEPLOY.md`.
+- Production had been serving the old build since 2026-09-12, so the routing
+  bug fixed on 2026-09-17 was still live until this deploy. Confirmed live
+  afterwards:
+
+  | check | before | after |
+  |---|---|---|
+  | `/products` title | homepage title | catalog title |
+  | `/halaman-tidak-ada` | `200` | `404` |
+  | `/de` `lang` | — | `de` |
+  | trailing slash `/products/` | — | `301` → `/products` |
+
+- All 11 routes (`/`, `/products`, `/de`, `/fr`, and 7 product pages) return
+  `200` with distinct, correct titles.
+
+### Added
+
+- **`docs/DEPLOY.md`** — the manual FTP deploy procedure: host facts, the
+  three-phase upload ordering, verification commands, rollback, and the curl
+  gotchas below. This host has no CI/CD, so the steps only existed as tribal
+  knowledge until now.
+
+### Fixed
+
+- **Upload silently skipped the `[slug]` chunk.** Next.js emits a literal
+  `[slug]` directory under `_next/static/chunks/app/products/`, and curl
+  parses `[slug]` as a character class unless given `-g` (globoff). The URL no
+  longer matched the local file and the transfer failed without a useful
+  message. Caught by the post-deploy asset sweep; re-uploaded, and `-g` is now
+  set in the upload script.
+
+### Notes
+
+- Pushing to GitHub/GitLab does not publish the site — DNS points at Rumahweb,
+  and there is no `vercel.json`, `.github/workflows/`, or `netlify.toml`. This
+  is called out explicitly in `docs/DEPLOY.md` because it is an easy and
+  expensive thing to assume otherwise.
+- A full pre-deploy backup lives in `M:\saas\agyflow-backup-2026-09-18\production`
+  (50 files, 2.9 MB), including the old buggy `.htaccess`.
+
+---
+
 ## 2026-09-17
 
 Dynamic product catalog, build unblocking, and a static routing repair.

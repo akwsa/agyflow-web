@@ -153,16 +153,29 @@ explicit `.html` probe must therefore run before directory handling, and
 
 ## Deploy
 
+**Full procedure: [`DEPLOY.md`](./DEPLOY.md).** Short version:
+
 ```bash
 npm run build
 npm run preview        # optional: verify at http://127.0.0.1:4173
 npm run check-links    # optional: 0 broken is the expected result
 ```
 
-Upload all of `out/` into `public_html/` via cPanel File Manager or FTP.
-`out/.htaccess` must be uploaded too — it is a hidden file, so enable "show
-hidden files" in File Manager. Hosting credentials live in `agyflow-main.md`,
-which is git-ignored and must never be committed.
+Then back up what is live and upload all of `out/` into `public_html/`:
+
+```bash
+cd M:/saas/agyflow-backup-2026-09-18
+bash backup.sh                                    # -> ./production/
+bash upload.sh "M:/saas/saas/agyflow-web/out"     # assets, then HTML, then .htaccess
+```
+
+`out/.htaccess` must be uploaded too — it is a hidden file, so FTP `LIST` and
+cPanel File Manager both skip it unless dotfiles are shown. `upload.sh` handles
+this. Hosting credentials live in `agyflow-main.md`, which is git-ignored and
+must never be committed.
+
+Pushing to GitHub/GitLab does **not** deploy — the host is Rumahweb and there is
+no CI/CD.
 
 After upload, verify against production:
 
