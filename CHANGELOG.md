@@ -36,6 +36,12 @@ written down.
   three-phase upload ordering, verification commands, rollback, and the curl
   gotchas below. This host has no CI/CD, so the steps only existed as tribal
   knowledge until now.
+- **`README.md` — "Support & contact" section.** Documents the four published
+  addresses (`gdpr@`, `support@`, `billing@`, `hello@agyflow.com`), their
+  translated footer labels, and the fact that all four forward to
+  `wkagung@gmail.com` via cPanel. The forwarding lives outside this repo, so a
+  new address added here needs a matching mailbox and forwarder created in
+  cPanel or it will accept mail and drop it.
 
 ### Fixed
 

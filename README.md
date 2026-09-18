@@ -36,6 +36,31 @@ CI/CD configuration, so pushing to git does not deploy.
 `trailingSlash: false`, so clean URLs like `/de` and `/products/<slug>` only
 resolve because of its rewrite rules. See `docs/BUILD.md`.
 
+## ✉️ Support & contact
+
+Four addresses are published in the site footer
+(`components/Footer.tsx`), with translated labels in `lib/i18n.ts`:
+
+| Purpose | Address | Footer label (EN / DE / FR) |
+|---|---|---|
+| Data protection / GDPR requests | `gdpr@agyflow.com` | GDPR / DSGVO / RGPD |
+| Product help | `support@agyflow.com` | AI Help / KI-Hilfe / Aide IA |
+| Payments, invoices, refunds | `billing@agyflow.com` | Billing / Abrechnung / Facturation |
+| Everything else | `hello@agyflow.com` | General / Allgemein / Général |
+
+All four are mailboxes on the `agyflow.com` domain at Rumahweb and **forward to
+`wkagung@gmail.com`**. The forwarding is configured in cPanel, not in this
+repo — changing an address here changes what the site displays, but the
+mailbox and forwarder must be created in cPanel separately, or the address will
+silently accept and drop mail.
+
+`app/products/[slug]/page.tsx` also shows `hello@agyflow.com` on the
+early-access path for the Montessori title.
+
+There is currently **no** privacy policy, terms, or refund page on the site.
+For a store selling to EU customers, `gdpr@agyflow.com` is the address those
+pages would need to carry.
+
 ## 💻 Development
 
 ```bash
@@ -50,6 +75,7 @@ npm run clean        # remove .next/, out/, dist/
 `docs/BUILD.md` for why, plus the static routing rules and deploy steps.
 
 - `docs/BUILD.md` — build system, routing, deploy
+- `docs/DEPLOY.md` — FTP deploy procedure, backup, verification, rollback
 - `docs/I18N.md` — English / German / French routing
 - `CHANGELOG.md` — what changed, newest first
 
