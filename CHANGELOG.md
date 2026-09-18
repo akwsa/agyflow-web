@@ -42,6 +42,12 @@ written down.
   `wkagung@gmail.com` via cPanel. The forwarding lives outside this repo, so a
   new address added here needs a matching mailbox and forwarder created in
   cPanel or it will accept mail and drop it.
+- **`docs/GIT.md`** — how to push to both remotes. `agyflow-web` is a
+  submodule, so its commits are separate from the parent repo's pointer and
+  pushing one does not update the other. The doc spells out the two-step push,
+  how to verify both hosts landed on the same SHA, and the credential-helper
+  constraint. It also carries a warning that `git add -A` in the parent
+  directory would publish untracked secret files.
 
 ### Fixed
 

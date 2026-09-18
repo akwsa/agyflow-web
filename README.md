@@ -76,6 +76,7 @@ npm run clean        # remove .next/, out/, dist/
 
 - `docs/BUILD.md` — build system, routing, deploy
 - `docs/DEPLOY.md` — FTP deploy procedure, backup, verification, rollback
+- `docs/GIT.md` — pushing to GitHub + GitLab, the submodule pointer, credentials
 - `docs/I18N.md` — English / German / French routing
 - `CHANGELOG.md` — what changed, newest first
 
