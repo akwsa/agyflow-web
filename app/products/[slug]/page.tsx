@@ -16,23 +16,24 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCover from "@/components/ProductCover";
 import {
-  getAllProducts,
-  getProductBySlug,
+  loadProducts,
   getRelatedProducts,
   formatPrice,
   CATEGORY_LABELS,
+  type Product,
 } from "@/lib/products";
 
 interface Props {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return getAllProducts().map((product) => ({ slug: product.slug }));
+export async function generateStaticParams() {
+  const products = await loadProducts();
+  return products.map((product) => ({ slug: product.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const product = getProductBySlug(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = (await loadProducts()).find((p) => p.slug === params.slug);
   if (!product) return {};
 
   const title = `${product.name} — ${formatPrice(product.price)} | Agyflow`;
@@ -64,8 +65,7 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-function ProductJsonLd({ slug }: { slug: string }) {
-  const product = getProductBySlug(slug);
+function ProductJsonLd({ product }: { product: Product }) {
   if (!product) return null;
 
   const json = {
@@ -99,17 +99,19 @@ function ProductJsonLd({ slug }: { slug: string }) {
   );
 }
 
-export default function ProductPage({ params }: Props) {
-  const product = getProductBySlug(params.slug);
+export default async function ProductPage({ params }: Props) {
+  const allProducts = await loadProducts();
+  const product = allProducts.find((p) => p.slug === params.slug);
   if (!product) notFound();
 
-  const related = getRelatedProducts(product.slug, 3);
+  const related = getRelatedProducts(product.slug, 3, allProducts);
+  const includedBySlug = new Map(allProducts.map((p) => [p.slug, p]));
   const isBundle = product.category === "bundle";
 
   return (
     <main className="min-h-[100dvh] bg-neutral-void text-slate-100 flex flex-col">
       <Navbar lang="en" />
-      <ProductJsonLd slug={product.slug} />
+      <ProductJsonLd product={product} />
 
       {/* Breadcrumb */}
       <div className="border-b border-neutral-graphite/60 bg-neutral-void">
@@ -302,7 +304,7 @@ export default function ProductPage({ params }: Props) {
                   </h3>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
                     {product.includesProducts.map((slug) => {
-                      const included = getProductBySlug(slug);
+                      const included = includedBySlug.get(slug);
                       if (!included) return null;
                       return (
                         <Link
@@ -463,7 +465,7 @@ export default function ProductPage({ params }: Props) {
         </section>
       )}
 
-      <Footer lang="en" />
+      <Footer lang="en" products={allProducts} />
     </main>
   );
 }

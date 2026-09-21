@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCatalog from "@/components/ProductCatalog";
-import { getAllProducts, formatPrice } from "@/lib/products";
+import { loadProducts, formatPrice } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Digital Products — Compliance, Operations & AI Governance Toolkits | Agyflow",
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProductsPage() {
-  const products = getAllProducts();
+export default async function ProductsPage() {
+  const products = await loadProducts();
   const cheapest = Math.min(...products.map((p) => p.price));
 
   return (
@@ -66,11 +66,11 @@ export default function ProductsPage() {
       {/* Catalog */}
       <section className="flex-1 bg-surface-200 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ProductCatalog />
+          <ProductCatalog products={products} />
         </div>
       </section>
 
-      <Footer lang="en" />
+      <Footer lang="en" products={products} />
     </main>
   );
 }

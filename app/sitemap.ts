@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
-import { getAllProducts } from "@/lib/products";
+import { loadProducts } from "@/lib/products";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://agyflow.com";
   const now = new Date();
 
@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     fr: `${baseUrl}/fr`,
   };
 
-  const productPages: MetadataRoute.Sitemap = getAllProducts().map((product) => ({
+  const productPages: MetadataRoute.Sitemap = (await loadProducts()).map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
     lastModified: now,
     changeFrequency: "weekly",

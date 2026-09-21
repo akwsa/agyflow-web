@@ -9,6 +9,7 @@ import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { getDict } from "@/lib/i18n";
+import { loadProducts } from "@/lib/products";
 
 const t = getDict("fr");
 
@@ -53,17 +54,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FrenchHomePage() {
+export default async function FrenchHomePage() {
+  const products = await loadProducts();
   return (
     <main className="min-h-[100dvh] bg-[#071224] text-slate-100 flex flex-col">
       <Navbar lang="fr" />
       <Hero lang="fr" />
       <InteractiveAgentFlow lang="fr" />
       <BentoGrid lang="fr" />
-      <ProductSuite lang="fr" />
+      <ProductSuite lang="fr" products={products} />
       <PricingSection lang="fr" />
       <FaqSection lang="fr" />
-      <Footer lang="fr" />
+      <Footer lang="fr" products={products} />
       <JsonLd lang="fr" />
     </main>
   );

@@ -4,10 +4,19 @@ import React from "react";
 import Link from "next/link";
 import { Bot } from "lucide-react";
 import { getDict, type Lang } from "@/lib/i18n";
-import { getAllProducts } from "@/lib/products";
+import { type Product } from "@/lib/products-types";
 
-export default function Footer({ lang = "en" }: { lang?: Lang }) {
+export default function Footer({
+  lang = "en",
+  products: productsProp,
+}: {
+  lang?: Lang;
+  products?: Product[];
+}) {
   const t = getDict(lang).footer;
+  const liveProducts = (productsProp ?? []).filter(
+    (p) => p.status === "live",
+  );
   return (
     <footer className="border-t border-slate-800 bg-[#050c18] text-slate-400 text-xs">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -40,9 +49,7 @@ export default function Footer({ lang = "en" }: { lang?: Lang }) {
               {t.colProducts}
             </h4>
             <ul className="space-y-2">
-              {getAllProducts()
-                .filter((p) => p.status === "live")
-                .map((product) => (
+              {liveProducts.map((product) => (
                   <li key={product.slug}>
                     <Link
                       href={`/products/${product.slug}`}

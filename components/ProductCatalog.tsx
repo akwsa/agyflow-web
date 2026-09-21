@@ -4,12 +4,11 @@ import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { Search, SlidersHorizontal, ArrowUpRight, X } from "lucide-react";
 import {
-  getAllProducts,
   CATEGORY_LABELS,
   formatPrice,
   type Product,
   type ProductCategory,
-} from "@/lib/products";
+} from "@/lib/products-types";
 import ProductCover from "@/components/ProductCover";
 
 type SortKey = "featured" | "price-asc" | "price-desc" | "name";
@@ -93,20 +92,24 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export default function ProductCatalog() {
-  const products = useMemo(() => getAllProducts(), []);
+export default function ProductCatalog({
+  products,
+}: {
+  products: Product[];
+}) {
+  const allProducts = useMemo(() => products, [products]);
 
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<ProductCategory | "all">("all");
   const [sort, setSort] = useState<SortKey>("featured");
 
   const categories = useMemo(() => {
-    const set = new Set(products.map((p) => p.category));
+    const set = new Set(allProducts.map((p) => p.category));
     return Array.from(set);
   }, [products]);
 
   const filtered = useMemo(() => {
-    let list = [...products];
+    let list = [...allProducts];
 
     if (category !== "all") {
       list = list.filter((p) => p.category === category);
@@ -144,7 +147,7 @@ export default function ProductCatalog() {
     }
 
     return list;
-  }, [products, query, category, sort]);
+  }, [allProducts, query, category, sort]);
 
   return (
     <div>
@@ -202,10 +205,10 @@ export default function ProductCatalog() {
               : "border-neutral-graphite bg-neutral-carbon/60 text-neutral-fog hover:border-neutral-smoke hover:text-neutral-paper"
           }`}
         >
-          All ({products.length})
+          All ({allProducts.length})
         </button>
         {categories.map((cat) => {
-          const count = products.filter((p) => p.category === cat).length;
+          const count = allProducts.filter((p) => p.category === cat).length;
           return (
             <button
               key={cat}

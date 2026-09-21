@@ -1,20 +1,27 @@
-"use client";
 
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Layers } from "lucide-react";
 import { getDict, type Lang } from "@/lib/i18n";
 import {
-  getIndividualProducts,
-  getBundleProduct,
   formatPrice,
-} from "@/lib/products";
+  type Product,
+} from "@/lib/products-types";
 import ProductCover from "@/components/ProductCover";
 
-export default function ProductSuite({ lang = "en" }: { lang?: Lang }) {
+export default function ProductSuite({
+  lang = "en",
+  products: productsProp,
+  bundle: bundleProp,
+}: {
+  lang?: Lang;
+  products?: Product[];
+  bundle?: Product | null;
+}) {
   const t = getDict(lang).shop;
-  const products = getIndividualProducts();
-  const bundle = getBundleProduct();
+  const all = productsProp ?? [];
+  const products = all.filter((p) => p.category !== "bundle");
+  const bundle = bundleProp ?? all.find((p) => p.category === "bundle") ?? null;
 
   return (
     <section id="products" className="py-24 bg-[#081528] relative">
