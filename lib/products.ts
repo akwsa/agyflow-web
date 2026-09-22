@@ -32,10 +32,20 @@ export async function loadProducts(): Promise<Product[]> {
     return cachedProducts;
   }
 
+  // During `next build`, page data collection runs even for force-dynamic
+  // routes. The staging DB host is unreachable from the build machine, so a
+  // connect attempt there would hang the whole build for the TCP timeout.
+  // Skip the DB entirely at build time — these pages are dynamic by design
+  // and re-query on every request in the deployed runtime.
+  if (process.env.NEXT_PHASE === "phase-production-build") {
+    return STATIC_PRODUCTS;
+  }
+
   try {
     const connection = await mysql.createConnection({
       uri: databaseUrl,
       connectionLimit: 3,
+      connectTimeout: 5000,
       enableKeepAlive: true,
       keepAliveInitialDelay: 0,
     });
