@@ -23,7 +23,7 @@ test("deployment bundle includes auth source required by remote tests", async ()
     assert.ok(manifest.dependencies.react, "react must stay a runtime dependency for install-modules");
     assert.ok(manifest.dependencies.nodemailer, "nodemailer must stay a runtime dependency");
     assert.ok(manifest.dependencies.mysql2, "mysql2 must stay a runtime dependency");
-    assert.match(manifest.scripts["test:unit"], /node --no-warnings tests\/admin\.test\.mjs && node --no-warnings tests\/auth-email\.test\.mjs/);
+    assert.match(manifest.scripts["test:unit"], /node --no-warnings tests\/admin\.test\.mjs && node --no-warnings tests\/admin-data\.test\.mjs/);
     assert.doesNotMatch(manifest.scripts["test:unit"], /--test(?:\s|$)/);
     assert.match(manifest.scripts["test:db"], /node --no-warnings tests\/product-schema\.test\.mjs && node --no-warnings tests\/auth-db\.test\.mjs/);
     assert.doesNotMatch(manifest.scripts["test:db"], /--test(?:\s|$)/);
