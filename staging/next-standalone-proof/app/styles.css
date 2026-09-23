@@ -1,71 +1,5 @@
 :root {
   color-scheme: dark;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  background: #08090a;
-  color: #d8dadc;
-}
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at top, #11223d 0, #08090a 55%);
-}
-
-main {
-  width: min(680px, calc(100% - 48px));
-  padding: 48px;
-  border: 1px solid #2b2d31;
-  border-radius: 12px;
-  background: #0f1011;
-}
-
-.eyebrow {
-  color: #e4f222;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-}
-
-h1 {
-  margin: 12px 0;
-  color: #ffffff;
-  font-size: clamp(32px, 7vw, 56px);
-  letter-spacing: -0.04em;
-}
-
-p {
-  line-height: 1.7;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-a {
-  color: #08090a;
-  padding: 10px 14px;
-  border-radius: 6px;
-  background: #e4f222;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-ul {
-  padding-left: 20px;
-  line-height: 1.9;
-}
-
-code {
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: #1c1e22;
-  color: #e4f222;
-  font-size: 0.9em;
 }
 
 .meta {
@@ -110,31 +44,6 @@ code {
 
 .specs p {
   margin: 6px 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  min-height: 44px;
-  padding: 10px 16px;
-  border: 1px solid #e4f222;
-  border-radius: 6px;
-  background: #e4f222;
-  color: #08090a;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: wait;
-  opacity: 0.65;
 }
 
 button.secondary-button {

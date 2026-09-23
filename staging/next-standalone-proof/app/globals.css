@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #08090a;
+    --color-surface: #0f1011;
+    --color-accent-lime: #e4f222;
+    --color-accent-teal: #02b8cc;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #d0d6e0;
+    --color-text-tertiary: #8a8f98;
+    --color-text-muted: #62666d;
+    --color-border-subtle: #23252a;
+    --color-border-default: #383b3f;
+  }
+
+  body {
+    background-color: #08090a;
+    color: #d0d6e0;
+    font-feature-settings: "cv01" 1, "ss03" 1, "zero" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Linear-inspired glass panels */
+.glass-panel {
+  background: rgba(15, 16, 17, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(35, 37, 42, 0.8);
+}
+
+.glass-panel-hover {
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(22, 23, 24, 0.85);
+  border-color: rgba(56, 59, 63, 0.8);
+  box-shadow: 0 0 0 1px rgba(56, 59, 63, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Gradient text using brand colors */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #e4f222 50%, #02b8cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Badge glow effect */
+.badge-glow {
+  box-shadow: 0 0 12px -2px rgba(228, 242, 34, 0.2);
+}
+
+/* Concentric border radius formula: outer = inner + padding */
+.concentric-sm {
+  --radius-outer: 12px;
+  --radius-inner: 8px;
+  --padding: 4px;
+  border-radius: var(--radius-outer);
+}
+
+.concentric-md {
+  --radius-outer: 16px;
+  --radius-inner: 12px;
+  --padding: 4px;
+  border-radius: var(--radius-outer);
+}
+
+/* Hairline borders for surface separation */
+.border-hairline {
+  border: 0.5px solid #23252a;
+}
+
+.border-hairline-light {
+  border: 0.5px solid #383b3f;
+}
+
+/* Scale on press for tactile feedback */
+.scale-on-press {
+  transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.scale-on-press:active {
+  transform: scale(0.96);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23252a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #383b3f;
+}
