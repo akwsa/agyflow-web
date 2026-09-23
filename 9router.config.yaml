@@ -1,0 +1,539 @@
+# ========================================
+# 9router Configuration - AGY Flow Transformation
+# ========================================
+# Project: Convert static Next.js export to dynamic SaaS
+# Duration: 16 days (Day 1-16)
+# Agents: 6 specialized AI agents
+# Cost: $1-2/month (without Codex)
+# Created: 2026-09-21
+
+version: "1.0"
+
+# ========================================
+# PROJECT METADATA
+# ========================================
+project:
+  name: "agyflow-dynamic-transformation"
+  description: "Transform AGY Flow from static Next.js export to dynamic SaaS with authentication, payment, and admin features"
+  base_path: "m:\\saas\\saas\\agyflow-web"
+  output_path: "m:\\saas\\saas\\agyflow-web"
+  
+# ========================================
+# GLOBAL SETTINGS
+# ========================================
+settings:
+  parallel_execution: true
+  max_parallel_agents: 3
+  retry_on_failure: true
+  max_retries: 2
+  log_level: "info"
+  checkpoint_enabled: true
+  checkpoint_interval: "1h"
+  
+# ========================================
+# MODEL PROVIDERS
+# ========================================
+providers:
+  # Agnes AI (Primary - FREE)
+  agnes:
+    type: "agnes-ai"
+    api_key_env: "AGNES_AI_API_KEY"
+    base_url: "https://api.agnesai.com/v1"
+    models:
+      - "agnes-3.0-flash"    # 252 tok/sec, 512K context
+      - "agnes-2.5-pro"      # 1M context for large files
+    rate_limit: 60  # requests per minute
+    
+  # Google AI (UI Generation - FREE)
+  google:
+    type: "google-ai"
+    api_key_env: "GEMINI_API_KEY"
+    models:
+      - "gemini-1.5-flash"
+      - "gemini-1.5-pro"
+    rate_limit: 60
+    
+  # Atria ASI (Research - FREE)
+  atria:
+    type: "atria-asi"
+    api_key_env: "ATRIA_ASI_API_KEY"
+    base_url: "https://api.atria-asi.com/v1"
+    models:
+      - "atria-dawn-preview"
+    rate_limit: 30
+    
+  # CommandCode Gateway ($1/month)
+  commandcode:
+    type: "commandcode"
+    api_key_env: "COMMANDCODE_API_KEY"
+    base_url: "https://api.commandcode.ai/v1"
+    models:
+      - "commandcode/claude-3-5-sonnet"
+      - "commandcode/gpt-4"
+    rate_limit: 100
+    
+  # OpenRouter Gateway ($1-2/month)
+  openrouter:
+    type: "openrouter"
+    api_key_env: "OPENROUTER_API_KEY"
+    base_url: "https://openrouter.ai/api/v1"
+    models:
+      - "anthropic/claude-3-5-sonnet"
+      - "openai/gpt-4-turbo"
+    rate_limit: 100
+
+# ========================================
+# AGENT DEFINITIONS
+# ========================================
+agents:
+  
+  # ========================================
+  # AGENT 1: Infrastructure (Day 1-4)
+  # ========================================
+  infrastructure_agent:
+    name: "Infrastructure Agent"
+    description: "Setup Prisma, database schema, ISR configuration"
+    model:
+      primary: "agnes/agnes-3.0-flash"
+      fallback: "openrouter/anthropic/claude-3-5-sonnet"
+    
+    schedule:
+      start_day: 1
+      end_day: 4
+      estimated_hours: 96
+    
+    dependencies: []
+    
+    tasks:
+      - name: "prisma_setup"
+        description: "Setup Prisma ORM and database configuration"
+        files:
+          input:
+            - "package.json"
+            - "docs/implementation/FASE_0*.md"
+          output:
+            - "prisma/schema.prisma"
+            - "lib/db/client.ts"
+            - "lib/db/seed.ts"
+        
+      - name: "database_schema"
+        description: "Create comprehensive database schema"
+        files:
+          input:
+            - "docs/implementation/FASE_1*.md"
+          output:
+            - "prisma/schema.prisma"
+            - "prisma/migrations/"
+        
+      - name: "isr_configuration"
+        description: "Configure Incremental Static Regeneration"
+        files:
+          input:
+            - "next.config.mjs"
+          output:
+            - "next.config.mjs"
+            - "lib/revalidate.ts"
+    
+    context:
+      documentation:
+        - "docs/implementation/FASE_0_INFRASTRUCTURE_SETUP.md"
+        - "docs/implementation/FASE_1_PRISMA_AND_ISR.md"
+      
+      guidelines: |
+        - Use Prisma 5.x with MySQL
+        - Follow schema best practices
+        - Enable ISR for all pages
+        - Setup proper indexes
+        - Configure connection pooling
+  
+  # ========================================
+  # AGENT 2: Authentication (Day 5-10, Parallel)
+  # ========================================
+  auth_agent:
+    name: "Authentication Agent"
+    description: "Implement Auth.js v5 authentication system"
+    model:
+      primary: "agnes/agnes-3.0-flash"  # Fallback from Codex
+      fallback: "commandcode/claude-3-5-sonnet"
+    
+    schedule:
+      start_day: 5
+      end_day: 10
+      estimated_hours: 144
+    
+    dependencies:
+      - "infrastructure_agent"
+    
+    tasks:
+      - name: "authjs_setup"
+        description: "Setup Auth.js v5 with multiple providers"
+        files:
+          input:
+            - "docs/implementation/FASE_2_AUTHENTICATION.md"
+          output:
+            - "lib/auth/config.ts"
+            - "lib/auth/options.ts"
+            - "app/api/auth/[...nextauth]/route.ts"
+        
+      - name: "auth_providers"
+        description: "Configure Google, GitHub, Email providers"
+        files:
+          output:
+            - "lib/auth/providers/google.ts"
+            - "lib/auth/providers/github.ts"
+            - "lib/auth/providers/email.ts"
+        
+      - name: "session_management"
+        description: "Implement session and JWT handling"
+        files:
+          output:
+            - "lib/auth/session.ts"
+            - "lib/auth/jwt.ts"
+            - "middleware.ts"
+        
+      - name: "protected_routes"
+        description: "Setup route protection and role-based access"
+        files:
+          output:
+            - "lib/auth/guards.ts"
+            - "lib/auth/permissions.ts"
+    
+    context:
+      documentation:
+        - "docs/implementation/FASE_2_AUTHENTICATION.md"
+      
+      security_requirements: |
+        - Use Auth.js v5 latest
+        - Implement CSRF protection
+        - Secure session storage
+        - Password hashing with bcrypt
+        - Rate limiting on auth endpoints
+        - 2FA support (optional)
+  
+  # ========================================
+  # AGENT 3: Payment (Day 5-10, Parallel)
+  # ========================================
+  payment_agent:
+    name: "Payment Integration Agent"
+    description: "Integrate Lemon Squeezy and Gumroad webhooks"
+    model:
+      primary: "agnes/agnes-3.0-flash"  # Fallback from Codex
+      fallback: "commandcode/claude-3-5-sonnet"
+    
+    schedule:
+      start_day: 5
+      end_day: 10
+      estimated_hours: 144
+    
+    dependencies:
+      - "infrastructure_agent"
+    
+    tasks:
+      - name: "lemonsqueezy_integration"
+        description: "Setup Lemon Squeezy webhooks and API"
+        files:
+          input:
+            - "docs/implementation/FASE_3_WEBHOOKS_BILLING.md"
+          output:
+            - "app/api/webhooks/lemonsqueezy/route.ts"
+            - "lib/payments/lemonsqueezy.ts"
+            - "lib/payments/lemonsqueezy-verify.ts"
+        
+      - name: "gumroad_integration"
+        description: "Setup Gumroad webhooks and licensing"
+        files:
+          output:
+            - "app/api/webhooks/gumroad/route.ts"
+            - "lib/payments/gumroad.ts"
+            - "lib/payments/gumroad-verify.ts"
+        
+      - name: "subscription_logic"
+        description: "Implement subscription management"
+        files:
+          output:
+            - "lib/payments/subscriptions.ts"
+            - "lib/payments/plans.ts"
+            - "lib/payments/upgrades.ts"
+        
+      - name: "license_validation"
+        description: "Create license key validation system"
+        files:
+          output:
+            - "lib/payments/licenses.ts"
+            - "app/api/licenses/validate/route.ts"
+    
+    context:
+      documentation:
+        - "docs/implementation/FASE_3_WEBHOOKS_BILLING.md"
+      
+      security_requirements: |
+        - Verify webhook signatures
+        - Use environment variables for secrets
+        - Implement idempotency for webhooks
+        - Log all payment events
+        - Handle refunds and cancellations
+  
+  # ========================================
+  # AGENT 4: Admin Dashboard (Day 5-10, Parallel)
+  # ========================================
+  admin_agent:
+    name: "Admin Dashboard Agent"
+    description: "Build admin dashboard with analytics"
+    model:
+      primary: "google/gemini-1.5-flash"
+      fallback: "agnes/agnes-3.0-flash"
+    
+    schedule:
+      start_day: 5
+      end_day: 10
+      estimated_hours: 144
+    
+    dependencies:
+      - "infrastructure_agent"
+    
+    tasks:
+      - name: "admin_layout"
+        description: "Create admin dashboard layout and navigation"
+        files:
+          input:
+            - "docs/implementation/FASE_4-6_ADMIN_FILES_DEPLOY.md"
+          output:
+            - "app/admin/layout.tsx"
+            - "components/admin/sidebar.tsx"
+            - "components/admin/header.tsx"
+        
+      - name: "user_management"
+        description: "Build user management interface"
+        files:
+          output:
+            - "app/admin/users/page.tsx"
+            - "components/admin/user-table.tsx"
+            - "app/api/admin/users/route.ts"
+        
+      - name: "analytics_dashboard"
+        description: "Create analytics and charts"
+        files:
+          output:
+            - "app/admin/analytics/page.tsx"
+            - "components/admin/charts.tsx"
+            - "lib/analytics/metrics.ts"
+        
+      - name: "subscription_management"
+        description: "Build subscription management UI"
+        files:
+          output:
+            - "app/admin/subscriptions/page.tsx"
+            - "components/admin/subscription-table.tsx"
+    
+    context:
+      documentation:
+        - "docs/implementation/FASE_4-6_ADMIN_FILES_DEPLOY.md"
+      
+      ui_guidelines: |
+        - Use Tailwind CSS for styling
+        - Follow AGY brand colors
+        - Responsive design (mobile-first)
+        - Use Shadcn/ui components
+        - Implement dark mode support
+  
+  # ========================================
+  # AGENT 5: File Upload (Day 11-13)
+  # ========================================
+  files_agent:
+    name: "File Upload Agent"
+    description: "Implement file upload and storage system"
+    model:
+      primary: "agnes/agnes-2.5-pro"  # 1M context for large files
+      fallback: "agnes/agnes-3.0-flash"
+    
+    schedule:
+      start_day: 11
+      end_day: 13
+      estimated_hours: 72
+    
+    dependencies:
+      - "infrastructure_agent"
+      - "auth_agent"
+    
+    tasks:
+      - name: "upload_api"
+        description: "Create file upload API endpoints"
+        files:
+          input:
+            - "docs/implementation/FASE_4-6_ADMIN_FILES_DEPLOY.md"
+          output:
+            - "app/api/upload/route.ts"
+            - "lib/upload/handler.ts"
+            - "lib/upload/validation.ts"
+        
+      - name: "storage_integration"
+        description: "Integrate with cloud storage (S3/R2)"
+        files:
+          output:
+            - "lib/storage/s3.ts"
+            - "lib/storage/cloudflare-r2.ts"
+            - "lib/storage/local.ts"
+        
+      - name: "file_management_ui"
+        description: "Build file management interface"
+        files:
+          output:
+            - "app/files/page.tsx"
+            - "components/files/upload.tsx"
+            - "components/files/file-list.tsx"
+    
+    context:
+      documentation:
+        - "docs/implementation/FASE_4-6_ADMIN_FILES_DEPLOY.md"
+      
+      requirements: |
+        - Support multiple file types
+        - File size limits (10MB max)
+        - Image optimization
+        - Virus scanning (optional)
+        - CDN integration
+  
+  # ========================================
+  # AGENT 6: QA & Testing (Day 14-16)
+  # ========================================
+  qa_agent:
+    name: "QA & Testing Agent"
+    description: "Run tests, security audit, and deployment prep"
+    model:
+      primary: "agnes/agnes-3.0-flash"
+      fallback: "atria/atria-dawn-preview"
+    
+    schedule:
+      start_day: 14
+      end_day: 16
+      estimated_hours: 72
+    
+    dependencies:
+      - "infrastructure_agent"
+      - "auth_agent"
+      - "payment_agent"
+      - "admin_agent"
+      - "files_agent"
+    
+    tasks:
+      - name: "unit_tests"
+        description: "Write and run unit tests"
+        files:
+          output:
+            - "tests/unit/auth.test.ts"
+            - "tests/unit/payments.test.ts"
+            - "tests/unit/upload.test.ts"
+        
+      - name: "integration_tests"
+        description: "Write and run integration tests"
+        files:
+          output:
+            - "tests/integration/auth-flow.test.ts"
+            - "tests/integration/payment-flow.test.ts"
+        
+      - name: "security_audit"
+        description: "Run security audit and fix vulnerabilities"
+        files:
+          output:
+            - "SECURITY_AUDIT.md"
+            - ".github/dependabot.yml"
+        
+      - name: "performance_optimization"
+        description: "Optimize build and runtime performance"
+        files:
+          output:
+            - "PERFORMANCE_REPORT.md"
+        
+      - name: "deployment_prep"
+        description: "Prepare for cPanel deployment"
+        files:
+          input:
+            - "docs/implementation/FASE_4-6_ADMIN_FILES_DEPLOY.md"
+          output:
+            - "DEPLOYMENT.md"
+            - ".cpanel.yml"
+            - "deploy.sh"
+    
+    context:
+      documentation:
+        - "docs/implementation/FASE_4-6_ADMIN_FILES_DEPLOY.md"
+      
+      testing_requirements: |
+        - 80%+ code coverage
+        - All critical paths tested
+        - Security vulnerabilities fixed
+        - Performance benchmarks met
+        - Deployment checklist complete
+
+# ========================================
+# WORKFLOW ORCHESTRATION
+# ========================================
+workflow:
+  stages:
+    - name: "infrastructure"
+      agents: ["infrastructure_agent"]
+      parallel: false
+      
+    - name: "core_features"
+      agents: ["auth_agent", "payment_agent", "admin_agent"]
+      parallel: true
+      max_parallel: 3
+      
+    - name: "file_system"
+      agents: ["files_agent"]
+      parallel: false
+      
+    - name: "qa_deployment"
+      agents: ["qa_agent"]
+      parallel: false
+
+# ========================================
+# ERROR HANDLING
+# ========================================
+error_handling:
+  on_agent_failure:
+    - retry: true
+    - max_retries: 2
+    - fallback_model: true
+    - notify: true
+  
+  on_task_failure:
+    - log: true
+    - skip_optional: true
+    - continue_on_error: false
+
+# ========================================
+# MONITORING & REPORTING
+# ========================================
+monitoring:
+  enabled: true
+  metrics:
+    - "task_completion_time"
+    - "model_token_usage"
+    - "cost_per_agent"
+    - "error_rate"
+  
+  reporting:
+    frequency: "hourly"
+    output_format: "json"
+    output_path: "logs/9router-report.json"
+
+# ========================================
+# COST TRACKING
+# ========================================
+cost_tracking:
+  enabled: true
+  budget_limit: 5.00  # USD
+  alert_threshold: 80  # percent
+  
+  model_costs:
+    "agnes/agnes-3.0-flash": 0.00  # FREE
+    "agnes/agnes-2.5-pro": 0.00  # FREE
+    "google/gemini-1.5-flash": 0.00  # FREE
+    "atria/atria-dawn-preview": 0.00  # FREE
+    "commandcode/*": 0.01  # ~$1/month flat
+    "openrouter/*": 0.01  # ~$1/month usage
+
+# ========================================
+# END OF CONFIGURATION
+# ========================================
