@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 // Root layout stays language-neutral. Per-language metadata, JSON-LD and
@@ -37,6 +38,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className="min-h-[100dvh] bg-neutral-void text-neutral-mist antialiased selection:bg-brand-mint selection:text-neutral-void font-sans">
+        <Script
+          defer
+          data-domain="agyflow.com"
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
         {children}
       </body>
     </html>
