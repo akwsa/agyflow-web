@@ -12,7 +12,7 @@
     "start": "node .next/standalone/staging/next-standalone-proof/server.js",
     "test:package": "node --no-warnings tests/prepare-deploy.test.mjs",
     "test:db": "node --no-warnings tests/product-schema.test.mjs && node --no-warnings tests/auth-db.test.mjs && node --no-warnings tests/rate-limit-db.test.mjs && node --no-warnings tests/admin-db.test.mjs",
-    "test:unit": "node --no-warnings tests/admin.test.mjs && node --no-warnings tests/auth-email.test.mjs && node --no-warnings tests/auth-request-guard.test.mjs && node --no-warnings tests/authorization.test.mjs && node --no-warnings tests/browser-client.test.mjs && node --no-warnings tests/password-reset.test.mjs && node --no-warnings tests/rate-limit.test.mjs && node --no-warnings tests/registration.test.mjs && node --no-warnings tests/request-security.test.mjs && node --no-warnings tests/smtp-config.test.mjs && node --no-warnings tests/smtp-runtime.test.mjs && node --no-warnings tests/verification.test.mjs"
+    "test:unit": "node --no-warnings tests/admin.test.mjs && node --no-warnings tests/auth-email.test.mjs && node --no-warnings tests/auth-request-guard.test.mjs && node --no-warnings tests/authorization.test.mjs && node --no-warnings tests/browser-client.test.mjs && node --no-warnings tests/password-reset.test.mjs && node --no-warnings tests/payment-webhook-utils.test.mjs && node --no-warnings tests/rate-limit.test.mjs && node --no-warnings tests/registration.test.mjs && node --no-warnings tests/request-security.test.mjs && node --no-warnings tests/smtp-config.test.mjs && node --no-warnings tests/smtp-runtime.test.mjs && node --no-warnings tests/verification.test.mjs"
   },
   "dependencies": {
     "mysql2": "^3.24.4",
