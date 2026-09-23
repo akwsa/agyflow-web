@@ -4,9 +4,9 @@ export const LANGS: Lang[] = ["en", "de", "fr"];
 
 const en = {
   meta: {
-    title: "Agyflow | Autonomous Multi-Agent Workflows for Digital Teams",
+    title: "Agyflow | Agency Compliance Toolkit for Web Freelancers",
     description:
-      "Orchestrate specialized AI agents, streamline customer support, generate GDPR compliance documents, and run automated business pipelines on agyflow.com.",
+      "Instant-download GDPR, DSGVO, cookie audit, invoice reminder, onboarding, and AI disclosure templates for web freelancers and small agencies.",
     keywords: [
       "AI agents",
       "multi-agent workflows",
@@ -16,11 +16,11 @@ const en = {
       "SaaS workspace",
       "Agyflow",
     ],
-    ogTitle: "Agyflow | Autonomous Multi-Agent Workflows",
+    ogTitle: "Agyflow | Agency Compliance Toolkit",
     ogDescription:
-      "Orchestrate specialized AI agents and automate your business operations with agyflow.com.",
+      "Download practical compliance and client operations templates for web freelancers and small agencies.",
     twitterDescription:
-      "Orchestrate specialized AI agents and automated pipelines with agyflow.com",
+      "Instant-download compliance and client operations templates for web freelancers and small agencies",
   },
   nav: {
     tagline: "AUTONOMOUS SUITE",
@@ -33,17 +33,17 @@ const en = {
     deploy: "Deploy Workflow",
   },
   hero: {
-    badge: "Autonomous Multi-Agent Architecture • Google ADK & MCP Ready",
-    title1: "Orchestrate AI Agents into",
-    titleAccent: "Unstoppable Workflows",
+    badge: "Built for Web Freelancers & Agencies",
+    title1: "Stop Guessing Client Website Compliance.",
+    titleAccent: "Ship Audit-Ready Websites in Hours.",
     subtitle:
-      "Replace chaotic manual operations with self-orchestrating agent teams. Deploy GDPR compliance generators, automated customer support, and deterministic business pipelines with complete control.",
-    ctaPrimary: "Get Started Free",
-    ctaSecondary: "Explore Agent Engine",
+      "Battle-tested checklists, cookie audit spreadsheets, and client onboarding templates for freelancers and digital agencies serving EU and international clients. Instant ZIP download.",
+    ctaPrimary: "Get the Agency Toolkit for $29",
+    ctaSecondary: "Browse single products from $9",
     proof: [
-      "EU GDPR & Privacy Ready",
-      "Lemon Squeezy Billing Integrated",
-      "Deterministic State Synchronization",
+      "Instant ZIP download",
+      "Works in Notion, Word, Excel, and Sheets",
+      "Commercial license available",
     ],
     box1: {
       title: "Root Orchestrator",
@@ -224,10 +224,10 @@ const en = {
     ],
   },
   shop: {
-    kicker: "Digital Product Catalog",
-    title: "Toolkits You Can Download Today",
+    kicker: "Agency compliance products",
+    title: "Start with the bundle, or buy the exact file you need.",
     subtitle:
-      "Instant-download compliance, operations, and AI governance products for web freelancers and agencies — in English, German, and French. One-time purchase, yours forever.",
+      "The Agency Compliance Toolkit combines the GDPR checklist, cookie workbook, invoice emails, onboarding kit, and AI disclosure pack for $29. Single products start at $9.",
     viewAll: "Browse all products",
     view: "View product",
     buyNow: "Buy now",
@@ -236,10 +236,10 @@ const en = {
     save: "Save",
     languagesLabel: "Languages",
     formatsLabel: "Formats",
-    bundleTitle: "Need everything?",
+    bundleTitle: "Best global pick: Agency Compliance Toolkit",
     bundleText:
-      "Get all five toolkits in the Agency Compliance Toolkit bundle and save 54% versus buying separately.",
-    bundleCta: "View the bundle",
+      "Get all five agency files in one ZIP: GDPR checklist, cookie workbook, invoice emails, onboarding kit, and AI policy pack. Save 54% versus buying separately.",
+    bundleCta: "View $29 bundle",
   },
   pricing: {
     kicker: "Transparent Pricing",

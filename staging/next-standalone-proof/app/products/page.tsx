@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCatalog from "@/components/ProductCatalog";
+import AgencyComplianceTrustLayer from "@/components/AgencyComplianceTrustLayer";
 import { loadProducts, formatPrice } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Digital Products — Compliance, Operations & AI Governance Toolkits | Agyflow",
+  title: "Agency Compliance Toolkit and Digital Products | Agyflow",
   description:
     "Instant-download toolkits for web freelancers and agencies: GDPR/DSGVO checklists, cookie audit spreadsheets, invoice reminder emails, client onboarding kits, and AI usage policies. EN / DE / FR.",
   keywords: [
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     canonical: "/products",
   },
   openGraph: {
-    title: "Agyflow Digital Products — Compliance & Operations Toolkits",
+    title: "Agyflow Digital Products for Web Agencies",
     description:
       "Instant-download toolkits for web freelancers and agencies. GDPR checklists, cookie audits, invoice reminders, onboarding kits, and AI policies.",
     url: "https://agyflow.com/products",
@@ -47,15 +48,15 @@ export default async function ProductsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl">
             <span className="font-mono text-xs tracking-widest text-brand-mint uppercase">
-              Instant Download · Gumroad Checkout · EN / DE / FR
+              Agency toolkit · Gumroad checkout · EN / DE / FR
             </span>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-neutral-paper sm:text-5xl" style={{ letterSpacing: "-0.022em" }}>
-              Digital Products
+              Agency compliance products for client websites
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-fog">
-              Practical, ready-to-use toolkits for web freelancers, agencies, and
-              small businesses. Built for the EU market with English, German, and
-              French materials — from {" "}
+              Start with the $29 Agency Compliance Toolkit, or buy a single file
+              when you only need the checklist, cookie workbook, invoice emails,
+              onboarding kit, or AI policy pack. Single products start at{" "}
               <span className="font-mono text-neutral-mist">{formatPrice(cheapest)}</span>.
               One-time purchase, yours forever.
             </p>
@@ -69,6 +70,8 @@ export default async function ProductsPage() {
           <ProductCatalog products={products} />
         </div>
       </section>
+
+      <AgencyComplianceTrustLayer />
 
       <Footer lang="en" products={products} />
     </main>
