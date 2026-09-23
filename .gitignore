@@ -14,6 +14,15 @@ agyflow-main.md.bak
 # env & logs
 .env*
 npm-debug.log*
+build.log
+build.done
+
+# orchestrator run artifacts / checkpoints (not source)
+output/
+
+# local credential-copy helpers (contain live API keys - never commit)
+copy-gemini-key.sh
+copy-gemini-key.bat
 
 # os
 .DS_Store
