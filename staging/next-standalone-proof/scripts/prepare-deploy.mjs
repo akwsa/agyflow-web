@@ -6,11 +6,14 @@ import { rawRemoveIfExists } from "./raw-remove.mjs";
 const scriptPath = fileURLToPath(import.meta.url);
 const projectDirectory = path.resolve(path.dirname(scriptPath), "..");
 const standaloneRoot = path.join(projectDirectory, ".next", "standalone");
-const standaloneApp = path.join(
+const tracedStandaloneApp = path.join(
   standaloneRoot,
   "staging",
   "next-standalone-proof",
 );
+const standaloneApp = existsSync(path.join(standaloneRoot, "server.js"))
+  ? standaloneRoot
+  : tracedStandaloneApp;
 
 export function prepareDeploy(outputPath) {
   const outputDirectory = path.resolve(

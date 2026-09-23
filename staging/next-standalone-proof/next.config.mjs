@@ -7,7 +7,7 @@ const projectDirectory = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   output: "standalone",
   experimental: {
-    outputFileTracingRoot: path.join(projectDirectory, "../.."),
+    outputFileTracingRoot: projectDirectory,
   },
   reactStrictMode: true,
   images: {

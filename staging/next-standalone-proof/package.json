@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node ../../node_modules/next/dist/bin/next build",
+    "build": "next build",
     "db:migrate": "node db/run-migrations.mjs",
     "db:migrate:dry-run": "node db/run-migrations.mjs --dry-run",
     "db:migrate-seed": "node db/run-migrate-and-seed.mjs",
