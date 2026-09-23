@@ -15,6 +15,12 @@ function splitStatements(sql) {
     .filter(Boolean);
 }
 
+export async function listMigrationFiles() {
+  return (await readdir(migrationsDirectory))
+    .filter((name) => name.endsWith(".sql"))
+    .sort();
+}
+
 export async function applyMigrations(connection) {
   await connection.query(`
     CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -25,9 +31,7 @@ export async function applyMigrations(connection) {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
   `);
 
-  const migrationFiles = (await readdir(migrationsDirectory))
-    .filter((name) => name.endsWith(".sql"))
-    .sort();
+  const migrationFiles = await listMigrationFiles();
 
   const applied = [];
   const skipped = [];

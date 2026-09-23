@@ -3,6 +3,7 @@ import {
   processGumroadPayload,
   processWebhookDelivery,
 } from "@/lib/payments/webhook-db.js";
+import { guardWebhookRequest } from "@/lib/payments/webhook-rate-limit.js";
 import { verifyGumroadSignature } from "@/lib/payments/webhook-utils.js";
 
 export const dynamic = "force-dynamic";
@@ -23,6 +24,9 @@ function gumroadEventId(payload, eventType) {
 }
 
 export async function POST(request) {
+  const blocked = await guardWebhookRequest(request, { scope: "webhook:gumroad" });
+  if (blocked) return blocked;
+
   const secret = process.env.GUMROAD_WEBHOOK_SECRET;
   if (!secret) {
     return Response.json(

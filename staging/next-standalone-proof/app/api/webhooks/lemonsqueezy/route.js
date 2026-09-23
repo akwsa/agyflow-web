@@ -2,6 +2,7 @@ import {
   processLemonSqueezyPayload,
   processWebhookDelivery,
 } from "@/lib/payments/webhook-db.js";
+import { guardWebhookRequest } from "@/lib/payments/webhook-rate-limit.js";
 import { verifyLemonSqueezySignature } from "@/lib/payments/webhook-utils.js";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +14,9 @@ function lemonSqueezyEventId(payload) {
 }
 
 export async function POST(request) {
+  const blocked = await guardWebhookRequest(request, { scope: "webhook:lemonsqueezy" });
+  if (blocked) return blocked;
+
   const secret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
   if (!secret) {
     return Response.json(

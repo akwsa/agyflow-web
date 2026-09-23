@@ -1,5 +1,4 @@
-import { incrementRateLimit } from "./db.js";
-import { createRateLimiter } from "./rate-limit.js";
+import { createRateLimiter, rateLimitHeaders } from "../rate-limit.js";
 import {
   assertSameOrigin,
   clientIdentifier,
@@ -34,9 +33,7 @@ export function createAuthRequestGuard({ appBaseUrl, limiter }) {
         {
           status: 429,
           headers: {
-            "Cache-Control": "no-store",
-            "Retry-After": String(result.retryAfter),
-            "X-RateLimit-Limit": String(result.limit),
+            ...rateLimitHeaders(result),
             "X-RateLimit-Remaining": "0",
           },
         },
@@ -47,7 +44,7 @@ export function createAuthRequestGuard({ appBaseUrl, limiter }) {
   };
 }
 
-const limiter = createRateLimiter({ increment: incrementRateLimit });
+const limiter = createRateLimiter();
 
 export async function guardAuthRequest(request, policy) {
   const appBaseUrl = process.env.APP_BASE_URL;
