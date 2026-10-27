@@ -20,7 +20,7 @@ export default function Footer({
   return (
     <footer className="border-t border-slate-800 bg-[#050c18] text-slate-400 text-xs">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
           
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
@@ -70,6 +70,23 @@ export default function Footer({
             </ul>
           </div>
 
+          {/* Free Tools Column */}
+          <div>
+            <h4 className="font-semibold text-white tracking-wider uppercase text-[11px] mb-3">
+              {t.colResources}
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="https://killmyidea.agyflow.com"
+                  className="hover:text-brand-mint transition-colors"
+                >
+                  {t.ideaValidator}
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Legal & Compliance Column */}
           <div>
             <h4 className="font-semibold text-white tracking-wider uppercase text-[11px] mb-3">
@@ -81,6 +98,21 @@ export default function Footer({
                   <span className="text-slate-400">{item}</span>
                 </li>
               ))}
+              <li>
+                <Link href="/privacy-policy" className="hover:text-brand-mint transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-service" className="hover:text-brand-mint transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/refund-policy" className="hover:text-brand-mint transition-colors">
+                  Refund Policy
+                </Link>
+              </li>
             </ul>
           </div>
 

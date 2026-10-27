@@ -1,16 +1,6 @@
-import { getProductBySlug } from "@/db/products.mjs";
-import mysql from "mysql2/promise";
+import productsJson from "@/data/products.json";
 
 export const dynamic = "force-dynamic";
-
-const pool = !process.env.DATABASE_URL
-  ? null
-  : mysql.createPool({
-      uri: process.env.DATABASE_URL,
-      connectionLimit: 5,
-      enableKeepAlive: true,
-      keepAliveInitialDelay: 0,
-    });
 
 function price(cents, currency = "USD") {
   const value = cents / 100;
@@ -22,42 +12,30 @@ function price(cents, currency = "USD") {
 }
 
 export async function GET(_request, { params }) {
-  if (!pool) {
-    return Response.json(
-      { status: "error", error: "DATABASE_URL is not configured" },
-      { status: 503 },
-    );
-  }
-
   const slug = params.slug;
-
-  try {
-    const product = await getProductBySlug(pool, slug, { locale: "en" });
-
-    if (!product) {
-      return Response.json({ status: "not_found", slug }, { status: 404 });
-    }
-
-    return Response.json(
-      {
-        status: "ok",
-        product: {
-          ...product,
-          priceLabel: price(product.priceCents, product.currency),
-          compareAtLabel: product.compareAtCents
-            ? price(product.compareAtCents, product.currency)
-            : null,
-        },
-      },
-      { headers: { "cache-control": "no-store" } },
-    );
-  } catch (error) {
-    return Response.json(
-      {
-        status: "error",
-        error: error instanceof Error ? error.message : "database query failed",
-      },
-      { status: 503 },
-    );
+  const product = productsJson.find((item) => item.slug === slug);
+  if (!product) {
+    return Response.json({ status: "not_found", slug }, { status: 404 });
   }
+
+  const priceCents = Math.round(product.price * 100);
+  const compareAtCents = product.compareAt == null
+    ? null
+    : Math.round(product.compareAt * 100);
+  return Response.json(
+    {
+      status: "ok",
+      product: {
+        ...product,
+        priceCents,
+        compareAtCents,
+        commercialPriceCents: product.commercialPrice == null
+          ? null
+          : Math.round(product.commercialPrice * 100),
+        priceLabel: price(priceCents, product.currency),
+        compareAtLabel: compareAtCents ? price(compareAtCents, product.currency) : null,
+      },
+    },
+    { headers: { "cache-control": "no-store" } },
+  );
 }

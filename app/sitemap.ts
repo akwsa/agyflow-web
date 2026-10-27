@@ -18,6 +18,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: product.featured ? 0.9 : 0.8,
   }));
 
+  const legalPages: MetadataRoute.Sitemap = [
+    "/privacy-policy",
+    "/terms-of-service",
+    "/refund-policy",
+  ].map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     {
       url: baseUrl,
@@ -47,5 +58,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     ...productPages,
+    ...legalPages,
   ];
 }

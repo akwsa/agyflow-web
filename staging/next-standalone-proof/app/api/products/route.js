@@ -1,16 +1,6 @@
-import { listProducts } from "@/db/products.mjs";
-import mysql from "mysql2/promise";
+import productsJson from "@/data/products.json";
 
 export const dynamic = "force-dynamic";
-
-const pool = !process.env.DATABASE_URL
-  ? null
-  : mysql.createPool({
-      uri: process.env.DATABASE_URL,
-      connectionLimit: 5,
-      enableKeepAlive: true,
-      keepAliveInitialDelay: 0,
-    });
 
 function price(cents, currency = "USD") {
   const value = cents / 100;
@@ -21,65 +11,49 @@ function price(cents, currency = "USD") {
   }).format(value);
 }
 
-function toPublicProduct(row) {
+function toPublicProduct(product) {
+  const priceCents = Math.round(product.price * 100);
+  const compareAtCents = product.compareAt == null
+    ? null
+    : Math.round(product.compareAt * 100);
+  const commercialPriceCents = product.commercialPrice == null
+    ? null
+    : Math.round(product.commercialPrice * 100);
+
   return {
-    slug: row.slug,
-    name: row.name,
-    shortName: row.shortName,
-    tagline: row.tagline,
-    category: row.category,
-    status: row.status,
-    featured: row.featured,
-    price: { amount: row.priceCents / 100, cents: row.priceCents, currency: row.currency },
-    compareAt: row.compareAtCents ? { cents: row.compareAtCents, currency: row.currency } : null,
-    commercialPrice: row.commercialPriceCents
-      ? { cents: row.commercialPriceCents, currency: row.currency }
+    slug: product.slug,
+    name: product.name,
+    shortName: product.shortName,
+    tagline: product.tagline,
+    category: product.category,
+    status: product.status,
+    featured: product.featured,
+    price: { amount: product.price, cents: priceCents, currency: product.currency },
+    compareAt: compareAtCents ? { cents: compareAtCents, currency: product.currency } : null,
+    commercialPrice: commercialPriceCents
+      ? { cents: commercialPriceCents, currency: product.currency }
       : null,
-    priceLabel: price(row.priceCents, row.currency),
-    compareAtLabel: row.compareAtCents ? price(row.compareAtCents, row.currency) : null,
-    badge: row.badge,
-    format: row.format,
-    languages: row.languages,
-    audience: row.audience,
-    description: row.description,
-    features: row.features,
-    stats: row.stats,
-    cover: row.cover,
-    thumb: row.thumb,
-    coverTheme: row.coverTheme,
-    checkoutUrl: row.checkoutUrl,
-    includesProducts: row.includesProducts,
+    priceLabel: price(priceCents, product.currency),
+    compareAtLabel: compareAtCents ? price(compareAtCents, product.currency) : null,
+    badge: product.badge,
+    format: product.format,
+    languages: product.languages,
+    audience: product.audience,
+    description: product.description,
+    features: product.features,
+    stats: product.stats,
+    cover: product.cover,
+    thumb: product.thumb,
+    coverTheme: product.coverTheme,
+    checkoutUrl: product.checkoutUrl,
+    includesProducts: product.includesProducts,
   };
 }
 
 export async function GET() {
-  if (!pool) {
-    return Response.json(
-      { status: "error", error: "DATABASE_URL is not configured", products: [] },
-      { status: 503 },
-    );
-  }
-
-  try {
-    const rows = await listProducts(pool, { locale: "en", status: "live" });
-    return Response.json(
-      {
-        status: "ok",
-        count: rows.length,
-        products: rows.map(toPublicProduct),
-      },
-      {
-        headers: { "cache-control": "no-store" },
-      },
-    );
-  } catch (error) {
-    return Response.json(
-      {
-        status: "error",
-        error: error instanceof Error ? error.message : "database query failed",
-        products: [],
-      },
-      { status: 503 },
-    );
-  }
+  const products = productsJson.filter((product) => product.status === "live");
+  return Response.json(
+    { status: "ok", count: products.length, products: products.map(toPublicProduct) },
+    { headers: { "cache-control": "no-store" } },
+  );
 }

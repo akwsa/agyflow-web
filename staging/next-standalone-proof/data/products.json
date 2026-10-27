@@ -1,41 +1,39 @@
 [
   {
     "slug": "agency-compliance-toolkit",
-    "name": "Agency Compliance Toolkit",
-    "shortName": "Complete Bundle",
-    "tagline": "Every Agyflow Tier 1 product in one download — the complete compliance + client operations toolkit for web freelancers and agencies.",
+    "name": "EU Website Launch Readiness Kit",
+    "shortName": "Complete Launch Kit",
+    "tagline": "A repeatable pre-launch review workflow for web freelancers and small agencies serving EU clients.",
     "category": "bundle",
     "price": 29,
-    "compareAt": 63,
     "commercialPrice": 59,
     "currency": "USD",
-    "badge": "Best Value — Save 54%",
+    "badge": "Complete workflow",
     "featured": true,
     "status": "live",
     "format": ["Markdown", "Excel", "ZIP"],
-    "languages": ["EN", "DE", "FR"],
+    "languages": ["EN", "DE"],
     "audience": "Web freelancers, agencies, consultants serving EU clients",
     "stats": [
-      { "label": "Products included", "value": "5" },
+      { "label": "Workflow pieces", "value": "4" },
       { "label": "Languages", "value": "EN / DE / FR" },
-      { "label": "Value if bought separately", "value": "$63" }
+      { "label": "License options", "value": "2" }
     ],
     "description": [
-      "Every Agyflow Tier 1 product in one download — the complete compliance and client operations toolkit for web freelancers and agencies serving EU clients.",
-      "Buy the bundle and save 54% versus purchasing each product separately ($63 value). The Commercial License variant ($59) adds agency and team rights: use in unlimited client deliverables and share with your direct team per the included LICENSE.txt."
+      "Find website launch blockers, document cookies and vendors, and give clients a clear next step with one reusable kit.",
+      "The Agency License variant adds unlimited client deliverables and direct team sharing through the included LICENSE.txt."
     ],
     "features": [
-      "GDPR/DSGVO Website Compliance Checklist — EN + DE, 308 points ($12 value)",
-      "Cookie Audit & Vendor Inventory spreadsheet with live dashboard ($9 value)",
-      "Invoice Reminder Email Pack — 30 templates, EN/DE/FR ($15 value)",
-      "Client Onboarding Kit — questionnaire + kickoff checklist + 8 emails ($15 value)",
-      "AI Usage Policy Pack — policy + approval checklist + disclosures ($12 value)",
+      "Website launch checklist with blocker and warning flags, EN + DE",
+      "Cookie and vendor workbook for Excel and Google Sheets",
+      "Client-facing launch readiness report template",
+      "Handoff and remediation templates from the onboarding kit",
       "LICENSE.txt covering Individual and Commercial tiers"
     ],
     "cover": "/products/agency-compliance-toolkit-cover.png",
     "thumb": "/products/agency-compliance-toolkit-thumb.png",
     "checkoutUrl": "https://wkagungster.gumroad.com/l/agency-compliance-toolkit",
-    "includesProducts": ["gdpr-checklist", "cookie-audit", "invoice-reminders", "client-onboarding", "ai-policy-pack"]
+    "includesProducts": ["gdpr-checklist", "cookie-audit", "client-onboarding"]
   },
   {
     "slug": "gdpr-checklist",

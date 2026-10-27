@@ -106,7 +106,7 @@ export default function ProductCatalog({
   const categories = useMemo(() => {
     const set = new Set(allProducts.map((p) => p.category));
     return Array.from(set);
-  }, [products]);
+  }, [allProducts]);
 
   const filtered = useMemo(() => {
     let list = [...allProducts];

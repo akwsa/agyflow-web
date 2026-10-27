@@ -9,6 +9,7 @@
     "db:migrate-seed": "node db/run-migrate-and-seed.mjs",
     "db:reset-staging": "node db/reset-staging.mjs",
     "prepare:deploy": "node scripts/prepare-deploy.mjs",
+    "check:merged-launch-readiness": "node scripts/check-merged-launch-readiness.mjs",
     "smtp:verify": "node scripts/smtp-verify.mjs",
     "e2e:links": "node scripts/e2e-links.mjs",
     "start": "node server.js",

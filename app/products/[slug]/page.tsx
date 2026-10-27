@@ -395,17 +395,17 @@ export default async function ProductPage({ params }: Props) {
                 {!isBundle && (
                   <div className="rounded-card border border-brand-mint/25 bg-gradient-to-b from-brand-mint/[0.06] to-transparent p-6">
                     <h3 className="text-sm font-semibold text-neutral-paper">
-                      Need all five?
+                       Need the complete workflow?
                     </h3>
                     <p className="mt-2 text-xs leading-relaxed text-neutral-fog">
-                      Get the complete Agency Compliance Toolkit bundle — all
-                      Tier 1 products in one download and save 54%.
+                       Get the EU Website Launch Readiness Kit with the checklist,
+                       workbook, report structure, and client handoff templates.
                     </p>
                     <Link
                       href="/products/agency-compliance-toolkit"
                       className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-mint transition-colors hover:text-neutral-paper"
                     >
-                      View the bundle
+                       View the complete kit
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>

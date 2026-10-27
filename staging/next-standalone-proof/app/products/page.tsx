@@ -6,26 +6,24 @@ import AgencyComplianceTrustLayer from "@/components/AgencyComplianceTrustLayer"
 import { loadProducts, formatPrice } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Agency Compliance Toolkit and Digital Products | Agyflow",
+  title: "EU Website Launch Readiness Kit | Agyflow",
   description:
-    "Instant-download toolkits for web freelancers and agencies: GDPR/DSGVO checklists, cookie audit spreadsheets, invoice reminder emails, client onboarding kits, and AI usage policies. EN / DE / FR.",
+    "A practical pre-launch review kit for web freelancers and small agencies serving EU clients.",
   keywords: [
-    "digital products",
+    "website launch checklist",
     "GDPR checklist",
-    "cookie audit",
-    "invoice reminders",
-    "client onboarding",
-    "AI policy",
-    "agency toolkit",
+    "cookie audit workbook",
+    "web agency toolkit",
+    "EU website compliance",
     "Agyflow",
   ],
   alternates: {
     canonical: "/products",
   },
   openGraph: {
-    title: "Agyflow Digital Products for Web Agencies",
+    title: "Agyflow EU Website Launch Readiness Kit",
     description:
-      "Instant-download toolkits for web freelancers and agencies. GDPR checklists, cookie audits, invoice reminders, onboarding kits, and AI policies.",
+      "Find website launch blockers, document the work, and give clients a clear next step.",
     url: "https://agyflow.com/products",
     siteName: "Agyflow",
     images: ["/agyflow-brand.svg"],
@@ -35,7 +33,9 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPage() {
-  const products = await loadProducts();
+  const products = (await loadProducts()).filter(
+    (product) => product.status === "live" && product.category !== "education",
+  );
   const cheapest = Math.min(...products.map((p) => p.price));
 
   return (
@@ -48,17 +48,17 @@ export default async function ProductsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl">
             <span className="font-mono text-xs tracking-widest text-brand-mint uppercase">
-              Agency toolkit · Gumroad checkout · EN / DE / FR
+              EU website launch workflow · Gumroad checkout · EN / DE / FR
             </span>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-neutral-paper sm:text-5xl" style={{ letterSpacing: "-0.022em" }}>
-              Agency compliance products for client websites
+              A clearer client handoff before the website goes live
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-fog">
-              Start with the $29 Agency Compliance Toolkit, or buy a single file
-              when you only need the checklist, cookie workbook, invoice emails,
-              onboarding kit, or AI policy pack. Single products start at{" "}
+              Start with the $9 checklist, buy the complete $29 kit, or choose
+              the $59 agency license when you use the workflow in client work.
+              Supporting files are available separately when you need one part of the process. Prices start at{" "}
               <span className="font-mono text-neutral-mist">{formatPrice(cheapest)}</span>.
-              One-time purchase, yours forever.
+              One-time purchase with instant delivery.
             </p>
           </div>
         </div>

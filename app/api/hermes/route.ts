@@ -4,8 +4,17 @@ import { MySqlRunStore } from '@/lib/orchestrator/mysql-run-store';
 import { NineRouterClient } from '@/lib/orchestrator/nine-router';
 
 const databaseUrl = process.env.DATABASE_URL;
-const runStore = databaseUrl ? new MySqlRunStore(databaseUrl) : undefined;
-const runStoreReady = runStore?.initialize();
+let runStore: MySqlRunStore | undefined;
+let runStoreReady: Promise<void> | undefined;
+
+function getRunStore(): MySqlRunStore | undefined {
+  if (!databaseUrl) return undefined;
+  if (!runStore) {
+    runStore = new MySqlRunStore(databaseUrl);
+    runStoreReady = runStore.initialize();
+  }
+  return runStore;
+}
 
 // Keep active executors in memory for low-latency polling.
 // Every transition is also persisted to MySQL for restart recovery.
@@ -58,14 +67,16 @@ export async function POST(request: NextRequest) {
       dry_run = false,
     } = payload || {};
 
-    if (!runStore || !runStoreReady) {
+    const store = getRunStore();
+    const storeReady = runStoreReady;
+    if (!store || !storeReady) {
       return NextResponse.json({
         status: 'failed',
         message: 'MySQL persistence is not configured',
         error: { code: 'DATABASE_NOT_CONFIGURED', retryable: false },
       }, { status: 503 });
     }
-    await runStoreReady;
+    await storeReady;
 
     const routerBaseUrl = process.env.NINE_ROUTER_BASE_URL;
     const routerApiKey = process.env.NINE_ROUTER_API_KEY;
@@ -93,7 +104,7 @@ export async function POST(request: NextRequest) {
     // Create graph executor
     const executor = new GraphExecutor(agyFlowGraph, jobId, {
       modelClient,
-      store: runStore,
+      store,
       dryRun: dry_run,
       projectPath: project_path,
     });
@@ -191,9 +202,11 @@ export async function GET(request: NextRequest) {
   }
 
   let runState = runningJobs.get(jobId);
-  if (!runState && runStore && runStoreReady) {
-    await runStoreReady;
-    runState = await runStore.get(jobId) ?? undefined;
+  const store = getRunStore();
+  const storeReady = runStoreReady;
+  if (!runState && store && storeReady) {
+    await storeReady;
+    runState = await store.get(jobId) ?? undefined;
   }
 
   if (!runState) {
@@ -261,11 +274,13 @@ export async function DELETE(request: NextRequest) {
 
   const deletedFromMemory = runningJobs.delete(jobId);
   let deletedFromStore = false;
-  if (runStore && runStoreReady) {
-    await runStoreReady;
-    deletedFromStore = Boolean(await runStore.get(jobId));
+  const store = getRunStore();
+  const storeReady = runStoreReady;
+  if (store && storeReady) {
+    await storeReady;
+    deletedFromStore = Boolean(await store.get(jobId));
     if (deletedFromStore) {
-      await runStore.delete(jobId);
+      await store.delete(jobId);
     }
   }
 

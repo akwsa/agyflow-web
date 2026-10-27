@@ -4,7 +4,6 @@ import {
   ClipboardCheck,
   FileSpreadsheet,
   FileText,
-  Mail,
   ShieldCheck,
   Users,
 } from "lucide-react";
@@ -12,33 +11,33 @@ import {
 const bundleItems = [
   {
     icon: ClipboardCheck,
-    title: "308-point GDPR and DSGVO website checklist",
+    title: "Pre-launch website checklist",
     detail:
-      "Dual-language Markdown checklist covering consent banners, fonts, CDN embeds, forms, DPAs, and launch-blocking privacy issues.",
+      "Review consent, forms, embeds, fonts, data flows, vendor DPAs, and launch blockers before a client site goes live.",
   },
   {
     icon: FileSpreadsheet,
-    title: "Cookie audit and vendor register spreadsheet",
+    title: "Cookie and vendor workbook",
     detail:
-      "Excel and Google Sheets workbook with sample cookies, vendor rows, DPA status, non-EU vendor flags, and a live summary dashboard.",
+      "Record third-party tools, consent status, vendor details, transfer safeguards, and the follow-up each item needs.",
   },
   {
-    icon: Mail,
-    title: "30 client invoice reminder emails",
+    icon: FileText,
+    title: "Client-facing audit report",
     detail:
-      "English, German, and French templates for friendly, firm, and final follow-ups with merge fields for invoice details.",
+      "Give clients a readable summary of blockers, warnings, owners, and next actions instead of an unstructured list.",
   },
   {
     icon: Users,
-    title: "Agency client onboarding kit",
+    title: "Handoff and remediation templates",
     detail:
-      "Client intake questions, kickoff checklist, and eight status email templates for cleaner handoffs and fewer missing assets.",
+      "Ask for missing inputs, explain findings, and close the loop with reusable client emails and handoff checklists.",
   },
   {
     icon: ShieldCheck,
-    title: "AI usage and client disclosure pack",
+    title: "Choose the right license",
     detail:
-      "Internal AI use rules, approval checklist, and client disclosure language for teams that use AI in delivery work.",
+      "Choose a personal or agency license so your rights match the way you use the kit in client work.",
   },
 ];
 
@@ -68,7 +67,7 @@ const trustBadges = [
   },
   {
     title: "Clear refund policy",
-    detail: "If the bundle does not save you at least five hours, contact support within 14 days.",
+    detail: "If the files are missing, corrupted, or materially different from the product description, contact support within 14 days.",
   },
 ];
 
@@ -79,26 +78,26 @@ export default function AgencyComplianceTrustLayer() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <span className="text-xs font-semibold uppercase tracking-widest text-brand-mint">
-              Agency Compliance Toolkit
+              EU Website Launch Readiness Kit
             </span>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-neutral-paper sm:text-5xl" style={{ letterSpacing: "-0.022em" }}>
-              Everything in the $29 bundle, shown before you buy.
+              A repeatable pre-launch review for client websites.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-neutral-fog">
-              Built for freelancers and small agencies that ship client websites and need a reusable pre-launch compliance workflow, not a custom legal engagement.
+              Built for web freelancers and small agencies that need to spot website risks, document the work, and explain the next step to a client without starting from a blank page.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/products/agency-compliance-toolkit"
                 className="inline-flex items-center justify-center rounded-button bg-brand-mint px-5 py-3 text-sm font-semibold text-neutral-void transition-colors hover:bg-brand-mint/90"
               >
-                Get the agency toolkit for $29
+                See the three ways to buy
               </Link>
               <Link
                 href="/products/gdpr-checklist"
                 className="inline-flex items-center justify-center rounded-button border border-neutral-graphite bg-neutral-carbon px-5 py-3 text-sm font-medium text-neutral-mist transition-colors hover:border-neutral-smoke hover:text-neutral-paper"
               >
-                View the $12 checklist
+                Start with the $9 checklist
               </Link>
             </div>
           </div>
@@ -129,7 +128,7 @@ export default function AgencyComplianceTrustLayer() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-card border border-neutral-graphite bg-neutral-carbon/70 p-6">
                 <h3 className="text-sm font-semibold uppercase tracking-widest text-brand-mint">
-                  Perfect for
+                  For
                 </h3>
                 <ul className="mt-4 space-y-3 text-sm text-neutral-fog">
                   {perfectFor.map((item) => (

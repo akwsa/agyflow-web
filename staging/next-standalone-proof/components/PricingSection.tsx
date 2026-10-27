@@ -29,7 +29,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
         </div>
 
         {/* Pricing Cards */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr_0.9fr] items-stretch">
           
           {/* Tier 1: Starter */}
           <div className="rounded-card border border-neutral-graphite bg-neutral-carbon/90 p-8 flex flex-col justify-between glass-panel-hover">
@@ -37,9 +37,9 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               <div className="text-sm font-medium text-neutral-mist">{t.starter.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
                 <span className="text-4xl font-semibold text-neutral-paper">
-                  $15
+                  $9
                 </span>
-                <span className="text-xs text-neutral-fog">{t.perMonth}</span>
+                <span className="text-xs text-neutral-fog">{t.oneTime}</span>
               </div>
               <p className="mt-3 text-xs text-neutral-mist">
                 {t.starter.desc}
@@ -57,7 +57,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-neutral-graphite">
               <Link
-                href="https://autosstudio.lemonsqueezy.com/checkout/buy/2018215"
+                href="https://wkagungster.gumroad.com/l/gdpr-checklist"
                 target="_blank"
                 className="w-full block text-center rounded-button border border-neutral-graphite bg-neutral-carbon/80 py-3 text-xs font-medium text-neutral-paper hover:bg-neutral-obsidian transition-colors"
               >
@@ -79,7 +79,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
                 <span className="text-4xl font-semibold text-neutral-paper">
                   $29
                 </span>
-                <span className="text-xs text-neutral-fog">{t.perMonth}</span>
+                <span className="text-xs text-neutral-fog">{t.oneTime}</span>
               </div>
               <p className="mt-3 text-xs text-neutral-mist">
                 {t.pro.desc}
@@ -97,7 +97,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-brand-mint/30">
               <Link
-                href="https://autosstudio.lemonsqueezy.com/checkout/buy/2018238"
+                href="https://wkagungster.gumroad.com/l/agency-compliance-toolkit"
                 target="_blank"
                 className="w-full block text-center rounded-button bg-brand-mint py-3 text-xs font-medium text-neutral-void hover:bg-brand-mint/90 transition-all active:scale-96 scale-on-press"
               >
@@ -112,9 +112,9 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
               <div className="text-sm font-medium text-indigo-400">{t.agency.name}</div>
               <div className="mt-4 flex items-baseline gap-1">
                 <span className="text-4xl font-semibold text-neutral-paper">
-                  $49
+                  $59
                 </span>
-                <span className="text-xs text-neutral-fog">{t.perMonth}</span>
+                <span className="text-xs text-neutral-fog">{t.oneTime}</span>
               </div>
               <p className="mt-3 text-xs text-neutral-mist">
                 {t.agency.desc}
@@ -132,7 +132,7 @@ export default function PricingSection({ lang = "en" }: { lang?: Lang }) {
 
             <div className="mt-8 pt-6 border-t border-neutral-graphite">
               <Link
-                href="https://autosstudio.lemonsqueezy.com/checkout/buy/2018250"
+                href="https://wkagungster.gumroad.com/l/agency-compliance-toolkit"
                 target="_blank"
                 className="w-full block text-center rounded-button border border-neutral-graphite bg-neutral-carbon/80 py-3 text-xs font-medium text-neutral-paper hover:bg-neutral-obsidian transition-colors"
               >

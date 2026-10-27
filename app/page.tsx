@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import InteractiveAgentFlow from "@/components/InteractiveAgentFlow";
-import BentoGrid from "@/components/BentoGrid";
 import ProductSuite from "@/components/ProductSuite";
 import AgencyComplianceTrustLayer from "@/components/AgencyComplianceTrustLayer";
 import PricingSection from "@/components/PricingSection";
@@ -60,10 +58,8 @@ export default async function HomePage() {
     <main className="min-h-[100dvh] bg-[#071224] text-slate-100 flex flex-col">
       <Navbar lang="en" />
       <Hero lang="en" />
-      <InteractiveAgentFlow lang="en" />
-      <BentoGrid lang="en" />
-      <ProductSuite lang="en" products={products} />
       <AgencyComplianceTrustLayer />
+      <ProductSuite lang="en" products={products} />
       <PricingSection lang="en" />
       <FaqSection lang="en" />
       <Footer lang="en" products={products} />

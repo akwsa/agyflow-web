@@ -104,7 +104,7 @@ export default function ProductCatalog({
   const [sort, setSort] = useState<SortKey>("featured");
 
   const categories = useMemo(() => {
-    const set = new Set(allProducts.map((p) => p.category));
+    const set = new Set(products.map((p) => p.category));
     return Array.from(set);
   }, [products]);
 

@@ -8,6 +8,7 @@
     "build": "node scripts/build.mjs",
     "preview": "node scripts/serve.mjs",
     "check-links": "node scripts/check-links.mjs",
+    "check-launch-readiness": "node scripts/check-launch-readiness.mjs",
     "start": "next start",
     "lint": "next lint"
   },

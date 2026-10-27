@@ -2,24 +2,24 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ClipboardCheck, FileSpreadsheet, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, FileSpreadsheet, FileText, ShieldCheck } from "lucide-react";
 import { getDict, type Lang } from "@/lib/i18n";
 
 const previewItems = [
   {
     icon: ClipboardCheck,
-    title: "GDPR and DSGVO checklist",
-    text: "308 launch checks with blocker flags for consent, fonts, forms, embeds, DPAs, and Art. 30 lite records.",
+    title: "Find launch blockers",
+    text: "Review consent, forms, embeds, fonts, vendor DPAs, and other website launch risks in one repeatable pass.",
   },
   {
     icon: FileSpreadsheet,
-    title: "Cookie audit workbook",
-    text: "Excel and Sheets register for cookies, vendors, DPA status, transfer safeguards, and non-EU vendor counts.",
+    title: "Record cookies and vendors",
+    text: "Document third-party tools, consent status, vendor details, transfer safeguards, and follow-up work.",
   },
   {
-    icon: Mail,
-    title: "Client operations templates",
-    text: "Invoice reminders, onboarding checklists, kickoff emails, AI usage rules, and client disclosure language.",
+    icon: FileText,
+    title: "Hand over a clear report",
+    text: "Turn findings into client-ready next steps with a reusable report structure and follow-up language.",
   },
 ];
 
@@ -83,10 +83,10 @@ export default function Hero({ lang = "en" }: { lang?: Lang }) {
           <div className="mt-14 w-full max-w-5xl rounded-card border border-neutral-graphite bg-neutral-carbon/90 p-3 shadow-2xl shadow-black/80 backdrop-blur-2xl">
             <div className="border-b border-neutral-graphite/80 px-4 py-3 text-left">
               <p className="text-xs font-semibold uppercase tracking-widest text-brand-mint">
-                Inside the agency bundle
+                Inside the launch-readiness kit
               </p>
               <p className="mt-1 text-sm text-neutral-fog">
-                Five reusable files for client website launches, sold as one instant ZIP download.
+                Editable files for reviewing a client website before launch and explaining what happens next.
               </p>
             </div>
 

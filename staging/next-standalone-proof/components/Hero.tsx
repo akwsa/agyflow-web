@@ -83,10 +83,10 @@ export default function Hero({ lang = "en" }: { lang?: Lang }) {
           <div className="mt-14 w-full max-w-5xl rounded-card border border-neutral-graphite bg-neutral-carbon/90 p-3 shadow-2xl shadow-black/80 backdrop-blur-2xl">
             <div className="border-b border-neutral-graphite/80 px-4 py-3 text-left">
               <p className="text-xs font-semibold uppercase tracking-widest text-brand-mint">
-                Inside the agency bundle
+                Inside the launch-readiness kit
               </p>
               <p className="mt-1 text-sm text-neutral-fog">
-                Five reusable files for client website launches, sold as one instant ZIP download.
+                Editable files for reviewing a client website before launch and explaining what happens next.
               </p>
             </div>
 

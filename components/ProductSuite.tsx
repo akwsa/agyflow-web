@@ -20,7 +20,9 @@ export default function ProductSuite({
 }) {
   const t = getDict(lang).shop;
   const all = productsProp ?? [];
-  const products = all.filter((p) => p.category !== "bundle");
+  const products = all.filter((p) =>
+    ["gdpr-checklist", "cookie-audit", "client-onboarding"].includes(p.slug),
+  );
   const bundle = bundleProp ?? all.find((p) => p.category === "bundle") ?? null;
 
   return (
@@ -111,7 +113,7 @@ export default function ProductSuite({
             </Link>
           ))}
 
-          {/* Bundle card */}
+           {/* Complete kit card */}
           {bundle && (
             <Link
               href={`/products/${bundle.slug}`}
@@ -145,13 +147,15 @@ export default function ProductSuite({
                 </div>
 
                 <div className="mt-auto flex items-center justify-between border-t border-brand-mint/30 pt-5 mt-6">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg font-bold text-white">
-                      {formatPrice(bundle.price, bundle.currency)}
-                    </span>
-                    <span className="text-xs text-slate-400 line-through">
-                      {formatPrice(bundle.compareAt ?? 0, bundle.currency)}
-                    </span>
+                   <div className="flex items-baseline gap-2">
+                     <span className="text-lg font-bold text-white">
+                       {formatPrice(bundle.price, bundle.currency)}
+                     </span>
+                     {bundle.compareAt && (
+                       <span className="text-xs text-slate-400 line-through">
+                         {formatPrice(bundle.compareAt, bundle.currency)}
+                       </span>
+                     )}
                   </div>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-mint transition-colors group-hover:text-white">
                     {t.bundleCta}

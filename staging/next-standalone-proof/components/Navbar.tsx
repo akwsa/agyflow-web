@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Bot, Sparkles, Menu, X, ArrowRight, Globe } from "lucide-react";
+import { Bot, Menu, X, ArrowRight, Globe } from "lucide-react";
 import { getDict, LANGS, type Lang } from "@/lib/i18n";
 
 const LANG_HREF: Record<Lang, string> = { en: "/", de: "/de", fr: "/fr" };
@@ -18,10 +18,10 @@ function LangSwitcher({ current, onNavigate }: { current: Lang; onNavigate?: () 
           href={LANG_HREF[l]}
           onClick={onNavigate}
           hrefLang={l}
-          className={`rounded px-1.5 py-0.5 text-[11px] font-medium uppercase transition-colors ${
+          className={`rounded px-1.5 py-0.5 text-[11px] font-medium uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-mint ${
             l === current ? "text-brand-mint" : "text-neutral-fog hover:text-neutral-paper"
           }`}
-          aria-label={`${t.engine} — ${l.toUpperCase()}`}
+          aria-label={`Switch language to ${l.toUpperCase()}`}
         >
           {l}
         </Link>
@@ -57,31 +57,25 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="#engine"
-            className="text-sm font-medium text-neutral-mist hover:text-brand-mint transition-colors"
-          >
-            {t.engine}
-          </Link>
-          <Link
             href="/products"
             className="text-sm font-medium text-neutral-mist hover:text-brand-mint transition-colors"
           >
             {t.products}
           </Link>
-          <Link
-            href="#bento"
+          <a
+            href="https://killmyidea.agyflow.com"
             className="text-sm font-medium text-neutral-mist hover:text-brand-mint transition-colors"
           >
-            {t.features}
-          </Link>
+            {t.ideaScorer}
+          </a>
           <Link
-            href="#pricing"
+            href="/#pricing"
             className="text-sm font-medium text-neutral-mist hover:text-brand-mint transition-colors"
           >
             {t.pricing}
           </Link>
           <Link
-            href="#faq"
+            href="/#faq"
             className="text-sm font-medium text-neutral-mist hover:text-brand-mint transition-colors"
           >
             {t.faq}
@@ -92,13 +86,13 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
         <div className="hidden items-center gap-4 md:flex">
           <LangSwitcher current={lang} />
           <Link
-            href="#pricing"
+            href="/login"
             className="text-sm font-medium text-neutral-mist hover:text-neutral-paper transition-colors"
           >
             {t.signIn}
           </Link>
           <Link
-            href="#pricing"
+            href="/products/agency-compliance-toolkit"
             className="group relative inline-flex items-center gap-2 rounded-button bg-brand-mint px-4 py-2 text-sm font-medium text-neutral-void transition-all duration-200 hover:bg-brand-mint/90 active:scale-96 scale-on-press"
           >
             <span>{t.deploy}</span>
@@ -111,7 +105,10 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex items-center justify-center rounded-button p-2 text-neutral-fog hover:bg-neutral-carbon hover:text-neutral-paper"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-button p-2 text-neutral-fog hover:bg-neutral-carbon hover:text-neutral-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-mint"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -120,15 +117,8 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
 
       {/* Mobile menu modal */}
       {mobileMenuOpen && (
-        <div className="border-b border-neutral-graphite bg-neutral-void px-4 pt-2 pb-6 md:hidden">
+        <div id="mobile-navigation" className="border-b border-neutral-graphite bg-neutral-void px-4 pt-2 pb-6 md:hidden">
           <div className="flex flex-col space-y-3">
-            <Link
-              href="#engine"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 text-base font-medium text-neutral-mist hover:text-brand-mint"
-            >
-              {t.engine}
-            </Link>
             <Link
               href="/products"
               onClick={() => setMobileMenuOpen(false)}
@@ -136,22 +126,22 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
             >
               {t.products}
             </Link>
-            <Link
-              href="#bento"
+            <a
+              href="https://killmyidea.agyflow.com"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 text-base font-medium text-neutral-mist hover:text-brand-mint"
             >
-              {t.features}
-            </Link>
+              {t.ideaScorer}
+            </a>
             <Link
-              href="#pricing"
+              href="/#pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 text-base font-medium text-neutral-mist hover:text-brand-mint"
             >
               {t.pricing}
             </Link>
             <Link
-              href="#faq"
+              href="/#faq"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 text-base font-medium text-neutral-mist hover:text-brand-mint"
             >
@@ -162,7 +152,7 @@ export default function Navbar({ lang = "en" }: { lang?: Lang }) {
             </div>
             <div className="pt-2 flex flex-col gap-2">
               <Link
-                href="#pricing"
+                href="/products/agency-compliance-toolkit"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center rounded-button bg-brand-mint py-2.5 text-sm font-medium text-neutral-void"
               >
